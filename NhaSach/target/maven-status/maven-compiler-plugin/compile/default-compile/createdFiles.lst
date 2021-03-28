@@ -1,4 +1,15 @@
 com\mynhasach\nhasach\App.class
-com\mynhasach\nhasach\PrimaryController.class
+com\mynhasach\pojo\Customer.class
+com\mynhasach\pojo\Book.class
+com\mynhasach\pojo\Login.class
+com\mynhasach\pojo\BuyDetail.class
+com\mynhasach\pojo\Employee.class
 com\mynhasach\nhasach\SecondaryController.class
+com\mynhasach\pojo\Category.class
+com\mynhasach\pojo\Order.class
+com\mynhasach\pojo\Regulation.class
 module-info.class
+com\mynhasach\pojo\OrderDetail.class
+com\mynhasach\nhasach\PrimaryController.class
+com\mynhasach\pojo\Supplier.class
+com\mynhasach\pojo\Buy.class
