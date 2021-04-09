@@ -22,6 +22,10 @@ public class jdbcUtils {
         }
     }
 
+    /**
+     * Create connection to database
+     * @return connection
+     */
     public static Connection getConn() throws SQLException, SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost/nhasach",
                 "root", "12345");
