@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mynhasach.pojo;
 
-/**
- *
- * @author thuy
- */
-public class Category {
+import java.util.Date;
+
+public class Employee {
     private int id;
     private String name;
-    private String describe;
-
+    private String title;
+    private Date hireDate;
 
     /**
      * @return the id
@@ -44,17 +37,31 @@ public class Category {
     }
 
     /**
-     * @return the describe
+     * @return the title
      */
-    public String getDescribe() {
-        return describe;
+    public String getTitle() {
+        return title;
     }
 
     /**
-     * @param describe the describe to set
+     * @param title the title to set
      */
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * @return the hireDate
+     */
+    public Date getHireDate() {
+        return hireDate;
+    }
+
+    /**
+     * @param hireDate the hireDate to set
+     */
+    public void setHireDate(Date hireDate) {
+        this.hireDate = hireDate;
     }
     
 }
