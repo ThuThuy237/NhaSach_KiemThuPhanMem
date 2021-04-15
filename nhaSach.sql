@@ -121,7 +121,7 @@ CREATE TABLE `categories` (
   `name` varchar(150) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `describe` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +130,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,'romance',NULL),(2,'comic',NULL),(3,'dictionary',NULL),(4,'short story',NULL),(5,'thriller',NULL);
+INSERT INTO `categories` VALUES (1,'romance',NULL),(2,'truyen tranh',NULL),(3,'dictionary',NULL),(4,'short story',NULL),(5,'thriller',NULL);
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,15 +196,14 @@ DROP TABLE IF EXISTS `login`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `login` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `avatar` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `login_role` enum('ADMIN','USER') CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  CONSTRAINT `login_ibfk_1` FOREIGN KEY (`id`) REFERENCES `employee` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`id`,`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,9 +292,8 @@ CREATE TABLE `regulations` (
   `inventory_min_when_sell` int DEFAULT NULL,
   `debt_max` decimal(10,0) DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
-  `id_user` int NOT NULL,
-  PRIMARY KEY (`id_user`),
-  CONSTRAINT `regulations_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `login` (`id`),
+  `user_role` int NOT NULL,
+  PRIMARY KEY (`id`),
   CONSTRAINT `regulations_chk_1` CHECK ((`active` in (0,1)))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -345,4 +343,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-29 17:46:10
+-- Dump completed on 2021-04-15 20:20:17
