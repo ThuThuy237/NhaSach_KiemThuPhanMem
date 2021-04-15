@@ -1,3 +1,5 @@
+D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\nhasach\RegisterController.java
+D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\nhasach\Util.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\pojo\Buy.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\pojo\Customer.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\pojo\Supplier.java
@@ -5,7 +7,6 @@ D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\service\
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\pojo\OrderDetail.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\service\OrderService.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\nhasach\App.java
-D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\nhasach\SecondaryController.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\pojo\Employee.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\pojo\BuyDetail.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\service\BuyService.java
@@ -15,7 +16,6 @@ D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\pojo\Ord
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\service\BuyDetailService.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\service\LoginService.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\service\OrderDetailService.java
-D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\nhasach\PrimaryController.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\pojo\Login.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\service\SupplierService.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\pojo\Regulation.java
@@ -24,4 +24,5 @@ D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\pojo\Cat
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\service\jdbcUtils.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\module-info.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\pojo\Book.java
+D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\nhasach\LoginController.java
 D:\KiemThuPM\NhaSach_KiemThuPhanMem\NhaSach\src\main\java\com\mynhasach\service\EmployeeService.java

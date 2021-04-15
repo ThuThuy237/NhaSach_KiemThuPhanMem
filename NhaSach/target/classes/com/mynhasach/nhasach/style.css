@@ -16,10 +16,19 @@ VBox{
     -fx-spacing: 10;
     -fx-alignment: center;
 }
+.center{
+    -fx-spacing: 10;
+    -fx-alignment: center;
+}
 
 Text.title{
     -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-fill: #33CCCC;
+}
+
+.err{
+    -fx-text-fill: red;
+    -fx-opacity: 0.75;
 }
 

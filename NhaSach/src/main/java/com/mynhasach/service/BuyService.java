@@ -38,7 +38,6 @@ public class BuyService {
             
             buys.add(b);
         }
-        conn.close();
         return buys;
     }
 }

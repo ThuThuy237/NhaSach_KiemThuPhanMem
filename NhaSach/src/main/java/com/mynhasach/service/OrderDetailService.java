@@ -35,7 +35,6 @@ public class OrderDetailService {
             
             orderDetails.add(od);
         }
-        conn.close();
         return orderDetails;
     }
 }

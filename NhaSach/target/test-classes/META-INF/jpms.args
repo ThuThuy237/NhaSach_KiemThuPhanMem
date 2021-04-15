@@ -1,4 +1,0 @@
---patch-module
-com.mynhasach.nhasach=_
---add-reads
-com.mynhasach.nhasach=ALL-UNNAMED

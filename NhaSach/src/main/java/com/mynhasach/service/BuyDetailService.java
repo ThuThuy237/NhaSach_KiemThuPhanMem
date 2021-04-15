@@ -35,7 +35,6 @@ public class BuyDetailService {
             
             buyDetails.add(bd);
         }
-        conn.close();
         return buyDetails;
     }
 }

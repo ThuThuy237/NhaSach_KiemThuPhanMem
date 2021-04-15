@@ -1,13 +1,15 @@
 package com.mynhasach.nhasach;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.sql.SQLException;
 
+import com.mynhasach.service.LoginService;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
 
 public class LoginController {
 
@@ -16,9 +18,68 @@ public class LoginController {
     @FXML private Button btnLogin;
     @FXML private Hyperlink hlinkForgotPass;
     @FXML private Hyperlink hLinkSignUp;
+    @FXML private VBox vbLogin;
+    @FXML private Label tAlertUser;
+    @FXML private Label tAlertPass;
 
-    public void initialize(URL url, ResourceBundle resourceBundle){
 
+    public void login(){
+
+        this.btnLogin.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                checkLogin();
+            }
+        });
+
+    }
+
+
+    public void checkLogin(){
+        if(txtUserName.getText().isEmpty()) {
+            tAlertUser.setVisible(true);
+            return;
+        }
+
+        if(txtPassword.getText().isEmpty()) {
+            tAlertPass.setVisible(true);
+            return;
+        }
+        try {
+            String username = txtUserName.getText().toString();
+            String userPass = txtPassword.getText().toString();
+
+            Util ut = new Util();
+            userPass = ut.md5(userPass);
+
+            LoginService loginsv = new LoginService();
+            String password = loginsv.getPasswordByUsername(username);
+
+            if (userPass.equals(password)){
+                System.out.println("pass");
+            }else if(!userPass.equals(password)){
+                tAlertPass.setText("password is incorrect");
+                tAlertPass.setVisible(true);
+            }
+
+        } catch (SQLException throwables) {
+            tAlertPass.setText("Username is invalid !!!");
+            tAlertPass.setVisible(true);
+        }
+    }
+
+    public void textUserChange(){
+        tAlertUser.setText("Please enter a user name !!!");
+        tAlertUser.setVisible(false);
+    }
+
+    public void textPassChange(){
+        tAlertPass.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode() != KeyCode.ENTER){
+                tAlertPass.setText("Please enter a password !!!");
+                tAlertPass.setVisible(false);
+            }
+        });
     }
 
     public void SwitchToRegister(){

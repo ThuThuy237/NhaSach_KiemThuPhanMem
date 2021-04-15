@@ -10,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="600.0" styleClass="center" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mynhasach.nhasach.RegisterController">
@@ -21,37 +22,72 @@
                   <Image url="@images/logo.png" />
                </image>
             </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="sign up" />
+            <Text focusTraversable="true" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="sign up" />
          </children>
       </VBox>
       <VBox prefHeight="192.0" prefWidth="600.0">
          <children>
-            <TextField prefHeight="32.0" prefWidth="300.0" promptText="User name (*)" styleClass="field">
+            <Label fx:id="err" prefHeight="18.0" prefWidth="235.0" styleClass="err">
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets bottom="-5.0" />
                </VBox.margin>
-            </TextField>
-            <TextField prefHeight="32.0" promptText="Email (*)" styleClass="field">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </TextField>
-            <PasswordField prefHeight="32.0" promptText="Password (*)" styleClass="field">
-               <VBox.margin>
-                  <Insets bottom="5.0" />
-               </VBox.margin>
-            </PasswordField>
-            <PasswordField prefHeight="32.0" promptText="Confirm (*)" styleClass="field" />
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="center">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/user.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="username" onAction="#submit" prefHeight="32.0" prefWidth="280.0" promptText="User name (*)" styleClass="field" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="center">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/email.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="email" onAction="#submit" prefHeight="32.0" prefWidth="280.0" promptText="Email (*)" styleClass="field" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="center">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/password.png" />
+                     </image>
+                  </ImageView>
+                  <PasswordField fx:id="password" onAction="#submit" prefHeight="32.0" prefWidth="280.0" promptText="Password (*)" styleClass="field" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" styleClass="center">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/key.png" />
+                     </image>
+                  </ImageView>
+                  <PasswordField fx:id="confirm" onAction="#submit" prefHeight="32.0" prefWidth="280.0" promptText="Confirm (*)" styleClass="field" />
+               </children>
+            </HBox>
          </children>
       </VBox>
-      <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="170.0" styleClass="btn-form" text="Create account">
+      <Button fx:id="regis" mnemonicParsing="false" onAction="#register" prefHeight="37.0" prefWidth="170.0" styleClass="btn-form" text="Create account">
          <opaqueInsets>
             <Insets />
          </opaqueInsets></Button>
       <HBox alignment="TOP_RIGHT">
          <children>
-            <Label prefHeight="32.0" text="Have an account ? " />
-            <Hyperlink onMouseClicked="#switchToLogin" prefHeight="32.0" text="Log in" underline="true" />
+            <Label prefHeight="35.0" prefWidth="118.0" text="Have an account ? ">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Hyperlink onMouseClicked="#switchToLogin" prefHeight="32.0" text="Log in" underline="true">
+               <font>
+                  <Font size="14.0" />
+               </font></Hyperlink>
          </children>
       </HBox>
    </children>

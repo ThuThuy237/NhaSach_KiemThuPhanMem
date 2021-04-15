@@ -33,7 +33,6 @@ public class SupplierService {
 
             suppliers.add(sup);
         }
-        conn.close();
         return suppliers;
     }
 }

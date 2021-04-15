@@ -41,7 +41,6 @@ public class BookService {
 
             books.add(b);
         }
-        conn.close();
         return books;
     }
 
@@ -65,7 +64,6 @@ public class BookService {
 //        if (preS.executeUpdate()>0)
 //            System.out.println("Thêm dữ liệu thành công!!!");
         preS.close();
-        conn.close();
 
     }
 }

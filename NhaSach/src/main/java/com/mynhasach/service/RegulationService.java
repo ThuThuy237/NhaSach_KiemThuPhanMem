@@ -36,7 +36,6 @@ public class RegulationService {
 
             regulations.add(r);
         }
-        conn.close();
         return regulations;
     }
 }

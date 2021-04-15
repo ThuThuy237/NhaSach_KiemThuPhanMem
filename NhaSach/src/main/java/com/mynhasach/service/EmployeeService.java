@@ -35,7 +35,6 @@ public class EmployeeService {
 
             employees.add(e);
         }
-        conn.close();
         return employees;
     }
 }

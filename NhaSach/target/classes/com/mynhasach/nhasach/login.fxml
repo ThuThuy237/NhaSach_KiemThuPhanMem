@@ -22,23 +22,40 @@
                   <Image url="@images/logo.png" />
                </image>
             </ImageView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Login" />
+            <Text focusTraversable="true" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Login" />
          </children>
       </VBox>
-      <VBox prefHeight="155.0" prefWidth="600.0" stylesheets="@style.css">
+      <VBox fx:id="vbLogin" prefHeight="115.0" prefWidth="600.0" stylesheets="@style.css">
          <children>
-            <TextField prefHeight="38.0" prefWidth="300.0" promptText="user name" styleClass="field" stylesheets="@style.css">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets bottom="15.0" />
-               </VBox.margin>
-            </TextField>
-            <PasswordField prefHeight="38.0" prefWidth="300.0" promptText="password" styleClass="field" stylesheets="@style.css" />
+            <HBox prefHeight="65.0" prefWidth="600.0" styleClass="center">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/user.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="txtUserName" onAction="#checkLogin" onKeyPressed="#textUserChange" prefHeight="38.0" prefWidth="300.0" promptText="user name" styleClass="field" stylesheets="@style.css">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+               </children>
+            </HBox>
+            <Label fx:id="tAlertUser" styleClass="err" visible="false" />
+            <HBox prefHeight="46.0" prefWidth="600.0" styleClass="center">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/key.png" />
+                     </image>
+                  </ImageView>
+                  <PasswordField fx:id="txtPassword" onAction="#checkLogin" onKeyPressed="#textPassChange" prefHeight="38.0" prefWidth="300.0" promptText="password" styleClass="field" stylesheets="@style.css" />
+               </children>
+            </HBox>
          </children>
       </VBox>
-      <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="171.0" styleClass="btn-form" stylesheets="@style.css" text="Log in" />
+      <Label fx:id="tAlertPass" styleClass="err" visible="false" />
+      <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" prefHeight="34.0" prefWidth="171.0" styleClass="btn-form" stylesheets="@style.css" text="Log in" />
       <HBox alignment="TOP_RIGHT" prefHeight="45.0" prefWidth="617.0">
          <children>
             <Label prefHeight="27.0" prefWidth="149.0" text="Don't have an account ?">

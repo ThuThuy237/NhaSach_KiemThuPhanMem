@@ -37,7 +37,6 @@ public class CustomerService {
 
             customers.add(cus);
         }
-        conn.close();
         return customers;
     }
 }
