@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import connection.ConnectJDBC;
 
 /**
  *
@@ -27,7 +28,7 @@ public class BookService {
         ResultSet rs = stm.executeQuery("SELECT * FROM books;");
 
         List<Book> books = new ArrayList<>();
-        while (rs.next()){
+        while (rs.next()) {
             Book b = new Book();
             b.setId(rs.getInt("id"));
             b.setName(rs.getString("name"));
@@ -37,11 +38,10 @@ public class BookService {
             b.setImportPrice(BigDecimal.valueOf(rs.getInt("import_price")));
             b.setPrice(BigDecimal.valueOf(rs.getInt("price")));
             b.setCategoryId(rs.getInt("cat_id"));
-            
+
 
             books.add(b);
         }
-        conn.close();
         return books;
     }
 
@@ -65,7 +65,39 @@ public class BookService {
 //        if (preS.executeUpdate()>0)
 //            System.out.println("Thêm dữ liệu thành công!!!");
         preS.close();
-        conn.close();
 
+    }
+    public boolean deleteBook(int id){
+        try {
+            String sql = "DELETE FROM `nhasach`.`books` WHERE (`id` = ?);";
+            PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+
+            return preparedStatement.executeUpdate()>0;
+        } catch (SQLException throwables) {
+            Logger.getLogger(BookService.class.getName()).log(Level.SEVERE, null, throwables);
+        }
+
+        return false;
+    }
+    public boolean updateBook(int id, String name, String describe){
+        try {
+            String sql = "UPDATE `nhasach`.`books` SET `name` = ?, `author` = ?, `inventory` = ?, `import_price` = ?, `price` = ?, `image` = ?, `cat_id` = ? WHERE (`id` = ?);";
+            PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+            preparedStatement.setInt(8, id);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, author);
+            preparedStatement.setInt(3, inventory);
+            preparedStatement.setInt(4, importprice);
+            preparedStatement.setInt(5, price);
+            preparedStatement.setString(6, image);
+            preparedStatement.setInt(7, categoryid);
+
+            return preparedStatement.executeUpdate()>0;
+        } catch (SQLException throwables) {
+            Logger.getLogger(BookService.class.getName()).log(Level.SEVERE, null, throwables);
+        }
+
+        return false;
     }
 }
