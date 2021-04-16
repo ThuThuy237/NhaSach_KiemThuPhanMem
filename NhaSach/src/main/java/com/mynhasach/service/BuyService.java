@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.mynhasach.pojo.Category;
+import connection.ConnectJDBC;
+
 /**
  *
  * @author thuy
@@ -38,7 +41,57 @@ public class BuyService {
             
             buys.add(b);
         }
-        conn.close();
+
         return buys;
+    }
+    public boolean addBuy(Buy buy) {
+        try {
+            String sql = "INSERT INTO `nhasach`.`buys` (`date`, `total`, `emm_id`, `supplier_id`) VALUES (?, ?, ?, ?);";
+            PreparedStatement stm = this.conn.prepareStatement(sql);
+            stm.setString(1,buy.getDate());
+            stm.setInt(2,buy.getTotal());
+            stm.setInt(3,buy.getEmpId());
+            stm.setInt(4,buy.getSupId());
+
+
+            return stm.executeUpdate()>0;
+        }catch (SQLException ex)
+        {
+            Logger.getLogger(BuyService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    }
+
+    public boolean deleteBuy(int id){
+        try {
+            String sql = "DELETE FROM `nhasach`.`buys` WHERE (`id` = ?);";
+            PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+
+            return preparedStatement.executeUpdate()>0;
+        } catch (SQLException throwables) {
+            Logger.getLogger(BuyService.class.getName()).log(Level.SEVERE, null, throwables);
+        }
+
+        return false;
+    }
+
+    public boolean updateCate(int id, String date, Int total, Int emm_id, Int supplier_id){
+        try {
+            String sql = "UPDATE `nhasach`.`categories` SET `date` = ?, `total` = ?, `emm_id` = ?, `supplier_id` = ?  WHERE (`id` = ?);";
+            PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+            preparedStatement.setInt(5, id);
+            preparedStatement.setString(1, date);
+            preparedStatement.setInt(2, total);
+            preparedStatement.setInt(3, emm_id);
+            preparedStatement.setInt(4, supplier_id);
+
+            return preparedStatement.executeUpdate()>0;
+        } catch (SQLException throwables) {
+            Logger.getLogger(BuyService.class.getName()).log(Level.SEVERE, null, throwables);
+        }
+
+        return false;
     }
 }
