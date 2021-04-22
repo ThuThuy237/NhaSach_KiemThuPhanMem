@@ -12,10 +12,9 @@ import com.mynhasach.service.LoginService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.paint.Color;
+import javafx.stage.Window;
 
 public class RegisterController {
     @FXML private TextField username;
@@ -23,6 +22,7 @@ public class RegisterController {
     @FXML private PasswordField confirm;
     @FXML private PasswordField password;
     @FXML private Label err;
+    @FXML private Window window;
     @FXML private Button regis;
 
     public void register(){
@@ -37,7 +37,7 @@ public class RegisterController {
 
     public void submit(){
         if (!checkMail(email.getText()))
-            err.setText("Not correct format for email address");
+            err.setText("Not correct format for email address !!!");
         else if (checkPass() && checkFill() && checkName(username.getText())){
             Login login = new Login();
             Util util = new Util();
@@ -49,10 +49,13 @@ public class RegisterController {
             try {
                 LoginService loginService = new LoginService();
                 if (loginService.addLogin(login)){
-                    System.out.println("add success!!!!");
+                    util.showAlert(Alert.AlertType.INFORMATION, window,"Register","Successful", 2900);
+                    this.switchToLogin();
                 }
             } catch (SQLException throwables) {
                 err.setText("Fail !!! Please try again.");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -64,7 +67,6 @@ public class RegisterController {
         if (matcher.find()){
             return true;
         }
-        System.out.println("incorrect!!!!");
         return false;
     }
 
@@ -102,7 +104,6 @@ public class RegisterController {
     }
 
     public void switchToLogin(){
-
         try {
             App.setRoot("login");
         } catch (IOException e) {

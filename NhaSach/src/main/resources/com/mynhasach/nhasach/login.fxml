@@ -41,7 +41,7 @@
                   </TextField>
                </children>
             </HBox>
-            <Label fx:id="tAlertUser" styleClass="err" visible="false" />
+            <Label fx:id="tAlertUser" styleClass="err" text="Please enter your user name !!!" visible="false" />
             <HBox prefHeight="46.0" prefWidth="600.0" styleClass="center">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -54,7 +54,7 @@
             </HBox>
          </children>
       </VBox>
-      <Label fx:id="tAlertPass" styleClass="err" visible="false" />
+      <Label fx:id="tAlertPass" styleClass="err" text="Please enter a password !!!" visible="false" />
       <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#login" prefHeight="34.0" prefWidth="171.0" styleClass="btn-form" stylesheets="@style.css" text="Log in" />
       <HBox alignment="TOP_RIGHT" prefHeight="45.0" prefWidth="617.0">
          <children>

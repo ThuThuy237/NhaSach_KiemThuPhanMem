@@ -8,13 +8,18 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Util {
-    public void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+    public void showAlert(Alert.AlertType alertType, Window owner, String title, String message, int timeout) throws InterruptedException {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+        if (timeout>0){
+            Thread.sleep(timeout);
+            alert.close();
+        }
+
     }
 
     public String md5(String str){

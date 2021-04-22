@@ -7,9 +7,14 @@ import com.mynhasach.service.LoginService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class LoginController {
 
@@ -28,14 +33,14 @@ public class LoginController {
         this.btnLogin.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                checkLogin();
+                checkLogin(actionEvent);
             }
         });
 
     }
 
 
-    public void checkLogin(){
+    public void checkLogin( ActionEvent actionEvent){
         if(txtUserName.getText().isEmpty()) {
             tAlertUser.setVisible(true);
             return;
@@ -57,19 +62,20 @@ public class LoginController {
 
             if (userPass.equals(password)){
                 System.out.println("pass");
+                SwitchToManager(actionEvent);
             }else if(!userPass.equals(password)){
                 tAlertPass.setText("password is incorrect");
                 tAlertPass.setVisible(true);
             }
 
-        } catch (SQLException throwables) {
+        } catch (SQLException | IOException throwables) {
             tAlertPass.setText("Username is invalid !!!");
             tAlertPass.setVisible(true);
         }
     }
 
     public void textUserChange(){
-        tAlertUser.setText("Please enter a user name !!!");
+        tAlertUser.setText("Please enter your user name !!!");
         tAlertUser.setVisible(false);
     }
 
@@ -83,13 +89,21 @@ public class LoginController {
     }
 
     public void SwitchToRegister(){
-
         try {
             App.setRoot("register");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
+    public void SwitchToManager(ActionEvent event) throws IOException {
+        try {
+            App.setRoot("manager");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
