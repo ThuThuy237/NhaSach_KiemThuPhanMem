@@ -1,3 +1,34 @@
 *{
     -fx-background-color: white;
+
 }
+.btn-form{
+    -fx-background-color: #99CCCC;
+}
+.field{
+    -fx-border-style: solid;
+    -fx-border-radius: 5px;
+    -fx-border-color: #DDDDDD;
+    -fx-display: block;
+    -fx-max-width: 300;
+}
+VBox{
+    -fx-spacing: 10;
+    -fx-alignment: center;
+}
+.center{
+    -fx-spacing: 10;
+    -fx-alignment: center;
+}
+
+Text.title{
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: #33CCCC;
+}
+
+.err{
+    -fx-text-fill: red;
+    -fx-opacity: 0.75;
+}
+

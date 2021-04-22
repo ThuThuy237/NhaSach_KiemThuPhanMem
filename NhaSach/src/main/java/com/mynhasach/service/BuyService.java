@@ -41,7 +41,6 @@ public class BuyService {
             
             buys.add(b);
         }
-
         return buys;
     }
     public boolean addBuy(Buy buy) {

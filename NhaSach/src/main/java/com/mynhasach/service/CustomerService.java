@@ -39,7 +39,6 @@ public class CustomerService {
 
             customers.add(cus);
         }
-
         return customers;
     }
     public boolean addCustomer(Customer custom) {

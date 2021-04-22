@@ -1,14 +1,16 @@
 com\mynhasach\pojo\Customer.class
+com\mynhasach\nhasach\RegisterController.class
 com\mynhasach\pojo\Book.class
 com\mynhasach\pojo\BuyDetail.class
 com\mynhasach\service\BuyService.class
 com\mynhasach\service\CategoryService.class
+com\mynhasach\nhasach\LoginController$1.class
 com\mynhasach\pojo\Order.class
+com\mynhasach\nhasach\LoginController.class
 com\mynhasach\service\BuyDetailService.class
 com\mynhasach\pojo\Regulation.class
 module-info.class
 com\mynhasach\pojo\OrderDetail.class
-com\mynhasach\nhasach\PrimaryController.class
 com\mynhasach\pojo\Supplier.class
 com\mynhasach\service\SupplierService.class
 com\mynhasach\nhasach\App.class
@@ -16,7 +18,6 @@ com\mynhasach\pojo\Login.class
 com\mynhasach\service\EmployeeService.class
 com\mynhasach\service\LoginService.class
 com\mynhasach\pojo\Employee.class
-com\mynhasach\nhasach\SecondaryController.class
 com\mynhasach\service\OrderDetailService.class
 com\mynhasach\pojo\Category.class
 com\mynhasach\service\CustomerService.class
@@ -24,4 +25,5 @@ com\mynhasach\service\OrderService.class
 com\mynhasach\service\BookService.class
 com\mynhasach\service\jdbcUtils.class
 com\mynhasach\service\RegulationService.class
+com\mynhasach\nhasach\Util.class
 com\mynhasach\pojo\Buy.class

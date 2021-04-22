@@ -37,7 +37,6 @@ public class OrderDetailService {
             
             orderDetails.add(od);
         }
-
         return orderDetails;
     }
     public boolean addOrderDetail(OrderDetail order) {

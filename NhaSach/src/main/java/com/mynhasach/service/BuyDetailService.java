@@ -36,8 +36,6 @@ public class BuyDetailService {
             bd.setBuyId(rs.getInt("buy_id"));
             
             buyDetails.add(bd);
-        }
-
         return buyDetails;
     }
     public boolean addBuyDetail(BuyDetail buy) {
