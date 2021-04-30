@@ -15,7 +15,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import connection.ConnectJDBC;
 
 /**
  *
@@ -42,7 +41,6 @@ public class CustomerService {
         return customers;
     }
     public boolean addCustomer(Customer custom) {
-        try {
             String sql = "INSERT INTO `nhasach`.`customers` (`name`, `gender`, `address`, `phone`, `birthday`) VALUES (?, ?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setString(1,custom.getName());
@@ -53,44 +51,32 @@ public class CustomerService {
 
 
             return stm.executeUpdate()>0;
-        }catch (SQLException ex)
-        {
-            Logger.getLogger(CustomerService.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         return false;
     }
 
     public boolean deleteCustomer(int id){
-        try {
             String sql = "DELETE FROM `nhasach`.`customers` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
             return preparedStatement.executeUpdate()>0;
-        } catch (SQLException throwables) {
-            Logger.getLogger(CustomerService.class.getName()).log(Level.SEVERE, null, throwables);
-        }
 
         return false;
     }
 
-    public boolean updateCustomer(int id, String name, String gender, String address, String phone, String birthday){
-        try {
+    public boolean updateCustomer(Customer custom){
             String sql = "UPDATE `nhasach`.`customer` SET `name` = ?, `gender` = ?, `address` = ?, `phone` = ?, `birthday` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(6, id);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, gender);
-            preparedStatement.setString(3, address);
-            preparedStatement.setString(4, phone);
-            preparedStatement.setString(5, birthday);
+            preparedStatement.setInt(6, custom.getId);
+            preparedStatement.setString(1, custom.getName);
+            preparedStatement.setString(2, custom.getGender);
+            preparedStatement.setString(3, custom.getAddress);
+            preparedStatement.setString(4, custom.getPhone);
+            preparedStatement.setString(5, custom.getBirthday);
 
 
             return preparedStatement.executeUpdate()>0;
-        } catch (SQLException throwables) {
-            Logger.getLogger(CustomerService.class.getName()).log(Level.SEVERE, null, throwables);
-        }
 
         return false;
     }

@@ -15,7 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import connection.ConnectJDBC;
+
 
 /**
  *
@@ -40,7 +40,6 @@ public class EmployeeService {
         return employees;
     }
     public boolean addEmployee(Employee employ) {
-        try {
             String sql = "INSERT INTO `nhasach`.`employees` (`name`, `title`, `hireDate`) VALUES (?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setString(1,employ.getName());
@@ -49,41 +48,29 @@ public class EmployeeService {
 
 
             return stm.executeUpdate()>0;
-        }catch (SQLException ex)
-        {
-            Logger.getLogger(EmployeeService.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         return false;
     }
 
     public boolean deleteEmployee(int id){
-        try {
             String sql = "DELETE FROM `nhasach`.`employees` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
             return preparedStatement.executeUpdate()>0;
-        } catch (SQLException throwables) {
-            Logger.getLogger(EmployeeService.class.getName()).log(Level.SEVERE, null, throwables);
-        }
 
         return false;
     }
 
-    public boolean updateEmployee(int id, String name, String title, String hireDate){
-        try {
+    public boolean updateEmployee(Employee employ){
             String sql = "UPDATE `nhasach`.`employees` SET `name` = ?, `title` = ?, `hireDate` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(4, id);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, title);
-            preparedStatement.setString(3, hireDate);
+            preparedStatement.setInt(4, employ.getId);
+            preparedStatement.setString(1, employ.getName);
+            preparedStatement.setString(2, employ.getTitle);
+            preparedStatement.setString(3, employ.getHireDate);
 
             return preparedStatement.executeUpdate()>0;
-        } catch (SQLException throwables) {
-            Logger.getLogger(EmployeeService.class.getName()).log(Level.SEVERE, null, throwables);
-        }
 
         return false;
     }

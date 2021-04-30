@@ -16,7 +16,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import connection.ConnectJDBC;
 
 /**
  *
@@ -42,51 +41,38 @@ public class OrderService {
         return orders;
     }
     public boolean addOrder(Order order) {
-        try {
             String sql = "INSERT INTO `nhasach`.`orders` (`date`, `total`, `emm_id`, `cus_id`) VALUES (?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setString(1,order.getDate());
-            stm.setInt(2,order.getTotal());
+            stm.setBigDecimal(2,order.getTotal());
             stm.setInt(3,order.getEmpId());
             stm.setInt(4,order.getCusId());
 
             return stm.executeUpdate()>0;
-        }catch (SQLException ex)
-        {
-            Logger.getLogger(OrderService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
         return false;
     }
 
     public boolean deleteOrder(int id){
-        try {
             String sql = "DELETE FROM `nhasach`.`orders` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
             return preparedStatement.executeUpdate()>0;
-        } catch (SQLException throwables) {
-            Logger.getLogger(OrderService.class.getName()).log(Level.SEVERE, null, throwables);
-        }
 
         return false;
     }
 
-    public boolean updateOrder(int id, String date, Int total, Int emm_id, Int cus_id){
-        try {
+    public boolean updateOrder(Order order){
             String sql = "UPDATE `nhasach`.`orders` SET `date` = ?, `total` = ?, `emm_id` = ?, `cus_id` = ?  WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(5, id);
-            preparedStatement.setString(1, date);
-            preparedStatement.setInt(2, total);
-            preparedStatement.setInt(3, emm_id);
-            preparedStatement.setInt(4, cus_id);
+            preparedStatement.setInt(5, order.getId);
+            preparedStatement.setString(1, order.getDdate);
+            preparedStatement.setBigDecimal(2, order.getTotal);
+            preparedStatement.setInt(3, order.getEmm_id);
+            preparedStatement.setInt(4, order.getCus_id);
 
             return preparedStatement.executeUpdate()>0;
-        } catch (SQLException throwables) {
-            Logger.getLogger(OrderService.class.getName()).log(Level.SEVERE, null, throwables);
-        }
+
 
         return false;
     }

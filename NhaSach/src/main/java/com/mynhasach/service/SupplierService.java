@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import connection.ConnectJDBC;
+
 
 /**
  *
@@ -38,7 +38,6 @@ public class SupplierService {
         return suppliers;
     }
     public boolean addSupplier(Supplier supply) {
-        try {
             String sql = "INSERT INTO `nhasach`.`suppliers` (`name`, `address`, `phone`) VALUES (?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setString(1,supply.getName());
@@ -46,41 +45,28 @@ public class SupplierService {
             stm.setString(3,supply.getPhone());
 
             return stm.executeUpdate()>0;
-        }catch (SQLException ex)
-        {
-            Logger.getLogger(SupplierService.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         return false;
     }
 
     public boolean deleteSupplier(int id){
-        try {
             String sql = "DELETE FROM `nhasach`.`suppliers` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
             return preparedStatement.executeUpdate()>0;
-        } catch (SQLException throwables) {
-            Logger.getLogger(SupplierService.class.getName()).log(Level.SEVERE, null, throwables);
-        }
-
         return false;
     }
 
-    public boolean updateSupplier(int id, String name, String address, String phone){
-        try {
+    public boolean updateSupplier(Supplier supply){
             String sql = "UPDATE `nhasach`.`suppliers` SET `name` = ?, `address` = ?, `phone` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(4, id);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, address);
-            preparedStatement.setString(3, phone);
+            preparedStatement.setInt(4, supply.getId);
+            preparedStatement.setString(1, supply.getName);
+            preparedStatement.setString(2, supply.getAddress);
+            preparedStatement.setString(3, supply.getPhone);
 
             return preparedStatement.executeUpdate()>0;
-        } catch (SQLException throwables) {
-            Logger.getLogger(SupplierService.class.getName()).log(Level.SEVERE, null, throwables);
-        }
 
         return false;
     }

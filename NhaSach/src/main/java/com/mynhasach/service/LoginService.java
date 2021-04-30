@@ -45,7 +45,6 @@ public class LoginService {
     }
 
     public boolean addLogin(Login login) {
-        try {
             String sql = "INSERT INTO `nhasach`.`login` (`username`, `password`, `email`, `avatar`, `login_role`) VALUES (?, ?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setString(1,login.getUsername());
@@ -55,10 +54,6 @@ public class LoginService {
             stm.setString(5,"USER");
 
             return stm.executeUpdate()>0;
-        }catch (SQLException ex)
-        {
-            Logger.getLogger(CategoryService.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         return false;
     }
