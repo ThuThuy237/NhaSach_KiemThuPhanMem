@@ -10,13 +10,17 @@ import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import connection.ConnectJDBC;
 
 /**
  *
  * @author thuy
  */
 public class BookService {
+    private Connection conn;
+
+    public BookService() throws SQLException {
+        this.conn = jdbcUtils.getConn();
+    }
     /**
      * get all of the books in the database
      * @return list of book in database
@@ -67,19 +71,14 @@ public class BookService {
         preS.close();
 
     }
-    public boolean deleteBook(int id){
-        try {
-            String sql = "DELETE FROM `nhasach`.`books` WHERE (`id` = ?);";
-            PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+    public boolean deleteBook(int id) throws SQLException {
+        String sql = "DELETE FROM `nhasach`.`books` WHERE (`id` = ?);";
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
 
-            return preparedStatement.executeUpdate()>0;
-        } catch (SQLException throwables) {
-            Logger.getLogger(BookService.class.getName()).log(Level.SEVERE, null, throwables);
-        }
-
-        return false;
+        return preparedStatement.executeUpdate()>0;
     }
+
     public boolean updateBook(int id, String name, String describe){
         try {
             String sql = "UPDATE `nhasach`.`books` SET `name` = ?, `author` = ?, `inventory` = ?, `import_price` = ?, `price` = ?, `image` = ?, `cat_id` = ? WHERE (`id` = ?);";

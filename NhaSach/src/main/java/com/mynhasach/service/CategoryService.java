@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import connection.ConnectJDBC;
 
 public class CategoryService {
     private Connection conn;
@@ -34,49 +33,30 @@ public class CategoryService {
         }
         return categories;
     }
-    public boolean addCate(Category cate) {
-        try {
-            String sql = "INSERT INTO `nhasach`.`categories` (`name`, `describe`) VALUES (?, ?);";
-            PreparedStatement stm = this.conn.prepareStatement(sql);
-            stm.setString(1,cate.getName());
-            stm.setString(2,cate.getDescribe());
+    public boolean addCate(Category cate) throws SQLException {
+        String sql = "INSERT INTO `nhasach`.`categories` (`name`, `describe`) VALUES (?, ?);";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setString(1,cate.getName());
+        stm.setString(2,cate.getDescribe());
 
-            return stm.executeUpdate()>0;
-        }catch (SQLException ex)
-        {
-            Logger.getLogger(CategoryService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return false;
+        return stm.executeUpdate()>0;
     }
 
-    public boolean deleteCate(int id){
-        try {
-            String sql = "DELETE FROM `nhasach`.`categories` WHERE (`id` = ?);";
-            PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+    public boolean deleteCate(int id) throws SQLException {
+        String sql = "DELETE FROM `nhasach`.`categories` WHERE (`id` = ?);";
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
 
-            return preparedStatement.executeUpdate()>0;
-        } catch (SQLException throwables) {
-            Logger.getLogger(CategoryService.class.getName()).log(Level.SEVERE, null, throwables);
-        }
-
-        return false;
+        return preparedStatement.executeUpdate()>0;
     }
 
-    public boolean updateCate(int id, String name, String describe){
-        try {
-            String sql = "UPDATE `nhasach`.`categories` SET `name` = ?, `describe` = ? WHERE (`id` = ?);";
-            PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(3, id);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, describe);
+    public boolean updateCate(int id, String name, String describe) throws SQLException {
+        String sql = "UPDATE `nhasach`.`categories` SET `name` = ?, `describe` = ? WHERE (`id` = ?);";
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+        preparedStatement.setInt(3, id);
+        preparedStatement.setString(1, name);
+        preparedStatement.setString(2, describe);
 
-            return preparedStatement.executeUpdate()>0;
-        } catch (SQLException throwables) {
-            Logger.getLogger(CategoryService.class.getName()).log(Level.SEVERE, null, throwables);
-        }
-
-        return false;
+        return preparedStatement.executeUpdate()>0;
     }
 }
