@@ -10,8 +10,7 @@ import com.mynhasach.pojo.Login;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 /**
@@ -25,10 +24,17 @@ public class LoginService {
     public LoginService() throws SQLException {
         this.conn = jdbcUtils.getConn();
     }
-
+    /**
+     * get all of the books in the database
+     * @return list of book in database
+     * @throws SQLException if can't connect to db
+     */
     public List<Login> getLogins() throws SQLException {
-        Statement stm = this.conn.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM login");
+         String sql = "SELECT * FROM logins ";
+
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+
+        ResultSet rs = preparedStatement.executeQuery();
 
         List<Login> logins = new ArrayList<>();
         while (rs.next()){
@@ -44,8 +50,7 @@ public class LoginService {
         return logins;
     }
 
-    public boolean addLogin(Login login) {
-        try {
+    public boolean addLogin(Login login) throws SQLException {
             String sql = "INSERT INTO `nhasach`.`login` (`username`, `password`, `email`, `avatar`, `login_role`) VALUES (?, ?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setString(1,login.getUsername());
@@ -55,12 +60,7 @@ public class LoginService {
             stm.setString(5,"USER");
 
             return stm.executeUpdate()>0;
-        }catch (SQLException ex)
-        {
-            Logger.getLogger(CategoryService.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-        return false;
     }
 
     public String getPasswordByUsername(String userName) throws SQLException {

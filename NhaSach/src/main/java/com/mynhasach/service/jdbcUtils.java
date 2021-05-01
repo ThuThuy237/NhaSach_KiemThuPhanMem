@@ -8,7 +8,6 @@ package com.mynhasach.service;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import connection.ConnectJDBC;
 
 /**
  *
@@ -26,6 +25,7 @@ public class jdbcUtils {
     /**
      * Create connection to database
      * @return connection
+     * @throws java.sql.SQLException
      */
     public static Connection getConn() throws SQLException, SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost/nhasach",

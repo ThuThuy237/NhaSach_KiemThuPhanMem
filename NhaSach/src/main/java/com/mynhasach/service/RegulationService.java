@@ -5,25 +5,35 @@
  */
 package com.mynhasach.service;
 
-import com.mynhasach.pojo.Category;
 import com.mynhasach.pojo.Regulation;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import connection.ConnectJDBC;
 
 /**
  *
  * @author thuy
  */
 public class RegulationService {
+
+    private Connection conn;
+    public RegulationService() throws SQLException {
+        this.conn = jdbcUtils.getConn();
+    }
+    /**
+     * get all of the books in the database
+     * @return list of book in database
+     * @throws SQLException if can't connect to db
+     */
     public List<Regulation> getRegulations() throws SQLException {
-        Connection conn = jdbcUtils.getConn();
-        Statement stm = conn.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM regulations");
+         String sql = "SELECT * FROM regulations ";
+
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+
+        ResultSet rs = preparedStatement.executeQuery();
 
         List<Regulation> regulations = new ArrayList<>();
         while (rs.next()){
@@ -40,8 +50,7 @@ public class RegulationService {
         }
         return regulations;
     }
-    public boolean addRegulation(Regulation regulate) {
-        try {
+    public boolean addRegulation(Regulation regulate) throws SQLException {
             String sql = "INSERT INTO `nhasach`.`regulations` (`active`, `debt_max`, `import_min`, `inventory_max_when_import`, `inventory_min_when_sell`, `id_user`) VALUES (?, ?, ?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setInt(1,regulate.getActive());
@@ -54,45 +63,31 @@ public class RegulationService {
 
 
             return stm.executeUpdate()>0;
-        }catch (SQLException ex)
-        {
-            Logger.getLogger(RegulationService.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
-        return false;
     }
 
-    public boolean deleteRegulation(int id){
-        try {
+    public boolean deleteRegulation(int id) throws SQLException{
+
             String sql = "DELETE FROM `nhasach`.`regulations` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
             return preparedStatement.executeUpdate()>0;
-        } catch (SQLException throwables) {
-            Logger.getLogger(RegulationService.class.getName()).log(Level.SEVERE, null, throwables);
-        }
 
-        return false;
     }
 
-    public boolean updateRegulation(int id, Int active, Int debt_max, Int import_min, Int inventory_max_when_import, Int inventory_min_when_sell, Int id_user){
-        try {
+    public boolean updateRegulation(Regulation regulate) throws SQLException{
             String sql = "UPDATE `nhasach`.`regulations` SET `active` = ?, `debt_max` = ?, `import_min` = ?, `inventory_max_when_import` = ?, `inventory_min_when_sell` = ?, `id_user` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(7, id);
-            preparedStatement.setInt(1, active);
-            preparedStatement.setInt(2, debt_max);
-            preparedStatement.setInt(3, import_min);
-            preparedStatement.setInt(4, inventory_max_when_import);
-            preparedStatement.setInt(5, inventory_min_when_sell);
-            preparedStatement.setInt(6, id_user);
+            preparedStatement.setInt(7, regulate.getId());
+            preparedStatement.setInt(1, regulate.getActive());
+            preparedStatement.setInt(2, regulate.getDebtMax());
+            preparedStatement.setInt(3, regulate.getImportMin());
+            preparedStatement.setInt(4, regulate.getInventoryMaxWhenImport());
+            preparedStatement.setInt(5, regulate.getInventoryMinWhenSell());
+            preparedStatement.setInt(6, regulate.getUserRole());
 
             return preparedStatement.executeUpdate()>0;
-        } catch (SQLException throwables) {
-            Logger.getLogger(RegulationService.class.getName()).log(Level.SEVERE, null, throwables);
-        }
 
-        return false;
     }
 }
