@@ -8,6 +8,7 @@ package com.mynhasach.service;
 import com.mynhasach.pojo.Category;
 import com.mynhasach.pojo.Regulation;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,6 +20,15 @@ import java.util.List;
  * @author thuy
  */
 public class RegulationService {
+
+    private Connection conn;
+    private int Id;
+    private int active;
+    private int debt_max;
+    private int import_min;
+    private int inventory_max_when_import;
+    private int inventory_min_when_sell;
+    private int id_user;
     public List<Regulation> getRegulations() throws SQLException {
         Connection conn = jdbcUtils.getConn();
         Statement stm = conn.createStatement();
@@ -39,7 +49,7 @@ public class RegulationService {
         }
         return regulations;
     }
-    public boolean addRegulation(Regulation regulate) {
+    public boolean addRegulation(Regulation regulate) throws SQLException {
             String sql = "INSERT INTO `nhasach`.`regulations` (`active`, `debt_max`, `import_min`, `inventory_max_when_import`, `inventory_min_when_sell`, `id_user`) VALUES (?, ?, ?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setInt(1,regulate.getActive());
@@ -53,10 +63,9 @@ public class RegulationService {
 
             return stm.executeUpdate()>0;
 
-        return false;
     }
 
-    public boolean deleteRegulation(int id){
+    public boolean deleteRegulation(int id) throws SQLException{
 
             String sql = "DELETE FROM `nhasach`.`regulations` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
@@ -64,22 +73,20 @@ public class RegulationService {
 
             return preparedStatement.executeUpdate()>0;
 
-        return false;
     }
 
-    public boolean updateRegulation(Regulation regulate){
+    public boolean updateRegulation(Regulation regulate) throws SQLException{
             String sql = "UPDATE `nhasach`.`regulations` SET `active` = ?, `debt_max` = ?, `import_min` = ?, `inventory_max_when_import` = ?, `inventory_min_when_sell` = ?, `id_user` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(7, regulate.getId);
-            preparedStatement.setInt(1, regulate.getActive);
-            preparedStatement.setInt(2, regulate.getDebt_max);
-            preparedStatement.setInt(3, regulate.getImport_min);
-            preparedStatement.setInt(4, regulate.getInventory_max_when_import);
-            preparedStatement.setInt(5, regulate.getInventory_min_when_sell);
-            preparedStatement.setInt(6, regulate.getId_user);
+            preparedStatement.setInt(7, Id);
+            preparedStatement.setInt(1, active);
+            preparedStatement.setInt(2, debt_max);
+            preparedStatement.setInt(3, import_min);
+            preparedStatement.setInt(4, inventory_max_when_import);
+            preparedStatement.setInt(5, inventory_min_when_sell);
+            preparedStatement.setInt(6, id_user);
 
             return preparedStatement.executeUpdate()>0;
 
-        return false;
     }
 }

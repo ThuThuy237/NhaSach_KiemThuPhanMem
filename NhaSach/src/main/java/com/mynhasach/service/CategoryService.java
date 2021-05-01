@@ -10,6 +10,9 @@ import java.util.logging.Logger;
 
 public class CategoryService {
     private Connection conn;
+    private int Id;
+    private String name;
+    private String describe;
 
     public CategoryService() throws SQLException {
         this.conn = jdbcUtils.getConn();
@@ -33,35 +36,32 @@ public class CategoryService {
         }
         return categories;
     }
-    public boolean addCate(Category cate) {
+    public boolean addCate(Category cate) throws SQLException {
             String sql = "INSERT INTO `nhasach`.`categories` (`name`, `describe`) VALUES (?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setString(1,cate.getName());
             stm.setString(2,cate.getDescribe());
 
             return stm.executeUpdate()>0;
-        return false;
     }
 
-    public boolean deleteCate(int id){
+    public boolean deleteCate(int id) throws SQLException{
             String sql = "DELETE FROM `nhasach`.`categories` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
             return preparedStatement.executeUpdate()>0;
 
-        return false;
     }
 
-    public boolean updateCate(Category cate){
+    public boolean updateCate(Category cate) throws SQLException{
             String sql = "UPDATE `nhasach`.`categories` SET `name` = ?, `describe` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(3, cate.getId);
-            preparedStatement.setString(1, cate.getName);
-            preparedStatement.setString(2, cate.getDescribe);
+            preparedStatement.setInt(3, Id);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, describe);
 
             return preparedStatement.executeUpdate()>0;
 
-        return false;
     }
 }

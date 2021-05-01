@@ -8,6 +8,8 @@ package com.mynhasach.service;
 import com.mynhasach.pojo.Category;
 import com.mynhasach.pojo.Customer;
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,10 +23,20 @@ import java.util.List;
  * @author thuy
  */
 public class CustomerService {
+
+    private Connection conn;
+    private int Id;
+    private String name;
+    private String gender;
+    private String address;
+    private String phone;
+    private String birthday;
+    private String kw;
     public List<Customer> getCustomers() throws SQLException, ParseException {
         Connection conn = jdbcUtils.getConn();
         Statement stm = conn.createStatement();
         ResultSet rs = stm.executeQuery("SELECT * FROM customer");
+        
 
         List<Customer> customers = new ArrayList<>();
         while (rs.next()){
@@ -40,44 +52,40 @@ public class CustomerService {
         }
         return customers;
     }
-    public boolean addCustomer(Customer custom) {
+    public boolean addCustomer(Customer custom) throws SQLException {
             String sql = "INSERT INTO `nhasach`.`customers` (`name`, `gender`, `address`, `phone`, `birthday`) VALUES (?, ?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setString(1,custom.getName());
             stm.setString(2,custom.getGender());
             stm.setString(3,custom.getAddress());
             stm.setString(4,custom.getPhone());
-            stm.setString(2,custom.getBirthday());
+            stm.setDate(2, (Date) custom.getBirthday());
 
 
             return stm.executeUpdate()>0;
-
-        return false;
     }
 
-    public boolean deleteCustomer(int id){
+    public boolean deleteCustomer(int id) throws SQLException{
             String sql = "DELETE FROM `nhasach`.`customers` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
             return preparedStatement.executeUpdate()>0;
 
-        return false;
     }
 
-    public boolean updateCustomer(Customer custom){
+    public boolean updateCustomer(Customer custom) throws SQLException{
             String sql = "UPDATE `nhasach`.`customer` SET `name` = ?, `gender` = ?, `address` = ?, `phone` = ?, `birthday` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(6, custom.getId);
-            preparedStatement.setString(1, custom.getName);
-            preparedStatement.setString(2, custom.getGender);
-            preparedStatement.setString(3, custom.getAddress);
-            preparedStatement.setString(4, custom.getPhone);
-            preparedStatement.setString(5, custom.getBirthday);
+            preparedStatement.setInt(6, Id);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, gender);
+            preparedStatement.setString(3, address);
+            preparedStatement.setString(4, phone);
+            preparedStatement.setString(5, birthday);
 
 
             return preparedStatement.executeUpdate()>0;
 
-        return false;
     }
 }

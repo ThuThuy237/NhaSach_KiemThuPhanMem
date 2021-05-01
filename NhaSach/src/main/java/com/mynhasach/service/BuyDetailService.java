@@ -15,11 +15,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mynhasach.pojo.Category;
+import java.sql.PreparedStatement;
 /**
  *
  * @author thuy
  */
 public class BuyDetailService {
+    
+    private Connection conn;
+
+    private int Id;
+    private int quanlity;
+    private BigDecimal price;
+    private int book_id;
+    private int buy_id;
     public List<BuyDetail> getBuyDetails() throws SQLException{
         Connection conn = jdbcUtils.getConn();
         Statement stm = conn.createStatement();
@@ -35,9 +44,18 @@ public class BuyDetailService {
             bd.setBuyId(rs.getInt("buy_id"));
             
             buyDetails.add(bd);
+        }
         return buyDetails;
+        
     }
-    public boolean addBuyDetail(BuyDetail buy) {
+
+    /**
+     *
+     * @param buy
+     * @return
+     * @throws SQLException
+     */
+    public boolean addBuyDetail(BuyDetail buy) throws SQLException {
             String sql = "INSERT INTO `nhasach`.`buydetails` (`quantily`, `price`, `book_id`, `buy_id`) VALUES (?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setInt(1,buy.getQuantily());
@@ -47,30 +65,30 @@ public class BuyDetailService {
 
             return stm.executeUpdate()>0;
 
-        return false;
     }
-    public boolean deleteBuyDetail(int id){
+    public boolean deleteBuyDetail(int id) throws SQLException{
             String sql = "DELETE FROM `nhasach`.`buydetails` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
             return preparedStatement.executeUpdate()>0;
 
-        return false;
+       
     }
 
-    public boolean updateBuyDetail(BuyDetail buy){
+    public boolean updateBuyDetail(BuyDetail buy) throws SQLException{
             String sql = "UPDATE `nhasach`.`buydetails` SET `quanlity` = ?, `price` = ?, `book_id` = ?, `buy_id` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(5, buy.getId);
-            preparedStatement.setInt(1, buy.get.Quanlity);
-            preparedStatement.setBigDecimal(2, buy.getPrice);
-            preparedStatement.setInt(3, buy.getBook_id);
-            preparedStatement.setInt(4, buy.getBuy_id);
+            preparedStatement.setInt(5, Id);
+            preparedStatement.setInt(1, quanlity);
+            preparedStatement.setBigDecimal(2, price);
+            preparedStatement.setInt(3, book_id);
+            preparedStatement.setInt(4, buy_id);
 
             return preparedStatement.executeUpdate()>0;
 
-        return false;
     }
+
+        
 
 }

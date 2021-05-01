@@ -16,14 +16,28 @@ import java.util.List;
  * @author thuy
  */
 public class BookService {
+
+    private int Id;
+    private Connection conn;
+    private int categoryid;
+    private String name;
+    private String author;
+    private BigDecimal importprice;
+    private BigDecimal price;
+    private String image;
+    private int inventory;
     /**
      * get all of the books in the database
+     * @param kw
      * @return list of book in database
      * @throws SQLException if can't connect to db
      */
     public List<Book> getBooks() throws SQLException {
         Connection conn = jdbcUtils.getConn();
         Statement stm = conn.createStatement();
+        
+        
+       
         ResultSet rs = stm.executeQuery("SELECT * FROM books;");
 
         List<Book> books = new ArrayList<>();
@@ -67,28 +81,26 @@ public class BookService {
         preS.close();
 
     }
-    public boolean deleteBook(int id){
+    public boolean deleteBook(int id) throws SQLException{
             String sql = "DELETE FROM `nhasach`.`books` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
             return preparedStatement.executeUpdate()>0;
 
-        return false;
     }
-    public boolean updateBook(Book book){
+    public boolean updateBook(Book book) throws SQLException{
             String sql = "UPDATE `nhasach`.`books` SET `name` = ?, `author` = ?, `inventory` = ?, `import_price` = ?, `price` = ?, `image` = ?, `cat_id` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(8, book.getId);
-            preparedStatement.setString(1, book.getName);
-            preparedStatement.setString(2, book.getAuthor);
-            preparedStatement.setInt(3, book.getInventory);
-            preparedStatement.setBigDecimal(4, book.getImportprice);
-            preparedStatement.setBigDecimal(5, book.getPrice);
-            preparedStatement.setString(6, book.getImage);
-            preparedStatement.setInt(7, book.getCategoryid);
+            preparedStatement.setInt(8, Id);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, author);
+            preparedStatement.setInt(3, inventory);
+            preparedStatement.setBigDecimal(4, importprice);
+            preparedStatement.setBigDecimal(5, price);
+            preparedStatement.setString(6, image);
+            preparedStatement.setInt(7, categoryid);
 
             return preparedStatement.executeUpdate()>0;
-        return false;
     }
 }

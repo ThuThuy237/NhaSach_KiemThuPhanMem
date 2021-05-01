@@ -9,6 +9,7 @@ import com.mynhasach.pojo.Category;
 import com.mynhasach.pojo.OrderDetail;
 import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,8 +21,15 @@ import java.util.List;
  * @author thuy
  */
 public class OrderDetailService {
+
+    private Connection conn;
+    private int Id;
+    private int quantity;
+    private BigDecimal price;
+    private int book_id;
+    private int order_id;
     public List<OrderDetail> getOrderDetails() throws SQLException{
-        Connection conn = jdbcUtils.getConn();
+        this.conn = jdbcUtils.getConn();
         Statement stm = conn.createStatement();
         ResultSet rs = stm.executeQuery("SELECT * FROM order_detail");
         
@@ -38,7 +46,7 @@ public class OrderDetailService {
         }
         return orderDetails;
     }
-    public boolean addOrderDetail(OrderDetail order) {
+    public boolean addOrderDetail(OrderDetail order) throws SQLException {
             String sql = "INSERT INTO `nhasach`.`orderdetails` (`quanlity`, `price`, `book_id`, `order_id` ) VALUES (?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setInt(1,order.getQuantity());
@@ -48,30 +56,27 @@ public class OrderDetailService {
 
             return stm.executeUpdate()>0;
 
-        return false;
     }
 
-    public boolean deleteOrderDetail(int id){
+    public boolean deleteOrderDetail(int id) throws SQLException{
             String sql = "DELETE FROM `nhasach`.`orderdetails` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
             return preparedStatement.executeUpdate()>0;
 
-        return false;
     }
 
-    public boolean updateOrderDetail(OrderDetail order){
+    public boolean updateOrderDetail(OrderDetail order) throws SQLException{
             String sql = "UPDATE `nhasach`.`orderdetails` SET `quantity` = ?, `price` = ?, `book_id` = ?, `order_id` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(5, order.getId);
-            preparedStatement.setInt(1, order.get.Quantity);
-            preparedStatement.setBigDecimal(2, order.getPrice);
-            preparedStatement.setInt(3, order.get.Book_id);
-            preparedStatement.setInt(4, order.get.Order_id);
+            preparedStatement.setInt(5, Id);
+            preparedStatement.setInt(1, quantity);
+            preparedStatement.setBigDecimal(2, price);
+            preparedStatement.setInt(3, book_id);
+            preparedStatement.setInt(4, order_id);
 
             return preparedStatement.executeUpdate()>0;
 
-        return false;
     }
 }

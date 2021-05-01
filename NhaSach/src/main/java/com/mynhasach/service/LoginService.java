@@ -44,7 +44,7 @@ public class LoginService {
         return logins;
     }
 
-    public boolean addLogin(Login login) {
+    public boolean addLogin(Login login) throws SQLException {
             String sql = "INSERT INTO `nhasach`.`login` (`username`, `password`, `email`, `avatar`, `login_role`) VALUES (?, ?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setString(1,login.getUsername());
@@ -55,7 +55,6 @@ public class LoginService {
 
             return stm.executeUpdate()>0;
 
-        return false;
     }
 
     public String getPasswordByUsername(String userName) throws SQLException {
