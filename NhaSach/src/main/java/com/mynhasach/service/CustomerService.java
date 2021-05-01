@@ -5,14 +5,12 @@
  */
 package com.mynhasach.service;
 
-import com.mynhasach.pojo.Category;
 import com.mynhasach.pojo.Customer;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,17 +23,22 @@ import java.util.List;
 public class CustomerService {
 
     private Connection conn;
-    private int Id;
-    private String name;
-    private String gender;
-    private String address;
-    private String phone;
-    private String birthday;
-    private String kw;
+    
+    public CustomerService() throws SQLException {
+        this.conn = jdbcUtils.getConn();
+    }
+    /**
+     * get all of the books in the database
+     * @return list of book in database
+     * @throws SQLException if can't connect to db
+     * @throws java.text.ParseException
+     */
     public List<Customer> getCustomers() throws SQLException, ParseException {
-        Connection conn = jdbcUtils.getConn();
-        Statement stm = conn.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM customer");
+         String sql = "SELECT * FROM customers ";
+
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+
+        ResultSet rs = preparedStatement.executeQuery();
         
 
         List<Customer> customers = new ArrayList<>();
@@ -77,12 +80,12 @@ public class CustomerService {
     public boolean updateCustomer(Customer custom) throws SQLException{
             String sql = "UPDATE `nhasach`.`customer` SET `name` = ?, `gender` = ?, `address` = ?, `phone` = ?, `birthday` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(6, Id);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, gender);
-            preparedStatement.setString(3, address);
-            preparedStatement.setString(4, phone);
-            preparedStatement.setString(5, birthday);
+            preparedStatement.setInt(6, custom.getId());
+            preparedStatement.setString(1, custom.getName());
+            preparedStatement.setString(2, custom.getGender());
+            preparedStatement.setString(3, custom.getAddress());
+            preparedStatement.setString(4, custom.getPhone());
+            preparedStatement.setDate(5, (Date) custom.getBirthday());
 
 
             return preparedStatement.executeUpdate()>0;

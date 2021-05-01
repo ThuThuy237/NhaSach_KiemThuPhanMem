@@ -5,14 +5,12 @@
  */
 package com.mynhasach.service;
 
-import com.mynhasach.pojo.Category;
 import com.mynhasach.pojo.Employee;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,14 +24,22 @@ import java.util.List;
 public class EmployeeService {
 
     private Connection conn;
-    private int Id;
-    private String name;
-    private String title;
-    private String hireDate;
-    public List<Employee> getEmployees() throws SQLException, ParseException {
+    
+    public EmployeeService() throws SQLException {
         this.conn = jdbcUtils.getConn();
-        Statement stm = conn.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM employee");
+    }
+    /**
+     * get all of the books in the database
+     * @return list of book in database
+     * @throws SQLException if can't connect to db
+     * @throws java.text.ParseException
+     */
+    public List<Employee> getEmployees() throws SQLException, ParseException {
+         String sql = "SELECT * FROM employees ";
+
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+
+        ResultSet rs = preparedStatement.executeQuery();
 
         List<Employee> employees = new ArrayList<>();
         while (rs.next()){
@@ -72,10 +78,10 @@ public class EmployeeService {
     public boolean updateEmployee(Employee employ) throws SQLException{
             String sql = "UPDATE `nhasach`.`employees` SET `name` = ?, `title` = ?, `hireDate` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(4, Id);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, title);
-            preparedStatement.setString(3, hireDate);
+            preparedStatement.setInt(4, employ.getId());
+            preparedStatement.setString(1, employ.getName());
+            preparedStatement.setString(2, employ.getTitle());
+            preparedStatement.setDate(3, (Date) employ.getHireDate());
 
             return preparedStatement.executeUpdate()>0;
 

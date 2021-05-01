@@ -8,14 +8,12 @@ package com.mynhasach.service;
 import com.mynhasach.pojo.BuyDetail;
 import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mynhasach.pojo.Category;
-import java.sql.PreparedStatement;
 /**
  *
  * @author thuy
@@ -24,15 +22,17 @@ public class BuyDetailService {
     
     private Connection conn;
 
-    private int Id;
-    private int quanlity;
-    private BigDecimal price;
-    private int book_id;
-    private int buy_id;
-    public List<BuyDetail> getBuyDetails() throws SQLException{
-        Connection conn = jdbcUtils.getConn();
-        Statement stm = conn.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM buy_detail");
+    public BuyDetailService() throws SQLException{
+        this.conn = jdbcUtils.getConn();
+        
+    }
+    
+    public List<BuyDetail> getBuyDetails() throws SQLException {
+         String sql = "SELECT * FROM buydetails ";
+
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+
+        ResultSet rs = preparedStatement.executeQuery();
         
         List<BuyDetail> buyDetails = new ArrayList<>();
         while(rs.next()){
@@ -79,11 +79,11 @@ public class BuyDetailService {
     public boolean updateBuyDetail(BuyDetail buy) throws SQLException{
             String sql = "UPDATE `nhasach`.`buydetails` SET `quanlity` = ?, `price` = ?, `book_id` = ?, `buy_id` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(5, Id);
-            preparedStatement.setInt(1, quanlity);
-            preparedStatement.setBigDecimal(2, price);
-            preparedStatement.setInt(3, book_id);
-            preparedStatement.setInt(4, buy_id);
+            preparedStatement.setInt(5, buy.getId());
+            preparedStatement.setInt(1, buy.getQuantily());
+            preparedStatement.setBigDecimal(2, buy.getPrice());
+            preparedStatement.setInt(3, buy.getBookId());
+            preparedStatement.setInt(4, buy.getBuyId());
 
             return preparedStatement.executeUpdate()>0;
 

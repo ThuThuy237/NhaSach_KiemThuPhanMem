@@ -5,14 +5,9 @@ import com.mynhasach.pojo.Category;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CategoryService {
     private Connection conn;
-    private int Id;
-    private String name;
-    private String describe;
 
     public CategoryService() throws SQLException {
         this.conn = jdbcUtils.getConn();
@@ -57,9 +52,9 @@ public class CategoryService {
     public boolean updateCate(Category cate) throws SQLException{
             String sql = "UPDATE `nhasach`.`categories` SET `name` = ?, `describe` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(3, Id);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, describe);
+            preparedStatement.setInt(3, cate.getId());
+            preparedStatement.setString(1, cate.getName());
+            preparedStatement.setString(2, cate.getDescribe());
 
             return preparedStatement.executeUpdate()>0;
 

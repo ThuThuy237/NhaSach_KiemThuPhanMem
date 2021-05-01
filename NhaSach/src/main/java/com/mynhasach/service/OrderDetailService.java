@@ -5,14 +5,12 @@
  */
 package com.mynhasach.service;
 
-import com.mynhasach.pojo.Category;
 import com.mynhasach.pojo.OrderDetail;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,15 +21,20 @@ import java.util.List;
 public class OrderDetailService {
 
     private Connection conn;
-    private int Id;
-    private int quantity;
-    private BigDecimal price;
-    private int book_id;
-    private int order_id;
-    public List<OrderDetail> getOrderDetails() throws SQLException{
+    public OrderDetailService() throws SQLException {
         this.conn = jdbcUtils.getConn();
-        Statement stm = conn.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM order_detail");
+    }
+    /**
+     * get all of the books in the database
+     * @return list of book in database
+     * @throws SQLException if can't connect to db
+     */
+    public List<OrderDetail> getOrderDetails() throws SQLException {
+         String sql = "SELECT * FROM orderdetails ";
+
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+
+        ResultSet rs = preparedStatement.executeQuery();
         
         List<OrderDetail> orderDetails = new ArrayList<>();
         while(rs.next()){
@@ -70,11 +73,11 @@ public class OrderDetailService {
     public boolean updateOrderDetail(OrderDetail order) throws SQLException{
             String sql = "UPDATE `nhasach`.`orderdetails` SET `quantity` = ?, `price` = ?, `book_id` = ?, `order_id` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(5, Id);
-            preparedStatement.setInt(1, quantity);
-            preparedStatement.setBigDecimal(2, price);
-            preparedStatement.setInt(3, book_id);
-            preparedStatement.setInt(4, order_id);
+            preparedStatement.setInt(5, order.getId());
+            preparedStatement.setInt(1, order.getQuantity());
+            preparedStatement.setBigDecimal(2, order.getPrice());
+            preparedStatement.setInt(3, order.getBookId());
+            preparedStatement.setInt(4, order.getOrderId());
 
             return preparedStatement.executeUpdate()>0;
 

@@ -5,13 +5,12 @@
  */
 package com.mynhasach.service;
 
-import com.mynhasach.pojo.Category;
+
 import com.mynhasach.pojo.Supplier;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,14 +22,20 @@ import java.util.List;
 public class SupplierService {
 
     private Connection conn;
-    private int Id;
-    private String name;
-    private String address;
-    private String phone;
+    public SupplierService() throws SQLException {
+        this.conn = jdbcUtils.getConn();
+    }
+    /**
+     * get all of the books in the database
+     * @return list of book in database
+     * @throws SQLException if can't connect to db
+     */
     public List<Supplier> getSuppliers() throws SQLException {
-        Connection conn = jdbcUtils.getConn();
-        Statement stm = conn.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM supplier");
+         String sql = "SELECT * FROM suppliers ";
+
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+
+        ResultSet rs = preparedStatement.executeQuery();
 
         List<Supplier> suppliers = new ArrayList<>();
         while (rs.next()){
@@ -67,10 +72,10 @@ public class SupplierService {
     public boolean updateSupplier(Supplier supply) throws SQLException{
             String sql = "UPDATE `nhasach`.`suppliers` SET `name` = ?, `address` = ?, `phone` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(4, Id);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, address);
-            preparedStatement.setString(3, phone);
+            preparedStatement.setInt(4, supply.getId());
+            preparedStatement.setString(1, supply.getName());
+            preparedStatement.setString(2, supply.getAddress());
+            preparedStatement.setString(3, supply.getPhone());
 
             return preparedStatement.executeUpdate()>0;
 
