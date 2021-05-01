@@ -25,6 +25,7 @@ public class jdbcUtils {
     /**
      * Create connection to database
      * @return connection
+     * @throws java.sql.SQLException
      */
     public static Connection getConn() throws SQLException, SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost/nhasach",

@@ -27,12 +27,14 @@ public class BookService {
      * @throws SQLException if can't connect to db
      */
     public List<Book> getBooks() throws SQLException {
-        Connection conn = jdbcUtils.getConn();
-        Statement stm = conn.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM books;");
+         String sql = "SELECT * FROM books ";
+
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+
+        ResultSet rs = preparedStatement.executeQuery();
 
         List<Book> books = new ArrayList<>();
-        while (rs.next()) {
+        while (rs.next()){
             Book b = new Book();
             b.setId(rs.getInt("id"));
             b.setName(rs.getString("name"));
@@ -56,15 +58,16 @@ public class BookService {
      */
     public void addBook(Book book) throws SQLException {
         Connection conn = jdbcUtils.getConn();
-        PreparedStatement preS = conn.prepareStatement("INSERT INTO books (name, author, inventory, import_price, price, image, cat_id)" +
+        PreparedStatement preS;
+        preS = conn.prepareStatement("INSERT INTO books (name, author, inventory, import_price, price, image, cat_id)" +
                 "VALUES (?,?,?,?,?,?,?)");
-        preS.setObject(1,book.getName());
-        preS.setObject(2,book.getAuthor());
-        preS.setObject(3,book.getInventory());
-        preS.setObject(4,book.getImportPrice());
-        preS.setObject(5,book.getPrice());
-        preS.setObject(6,book.getImage());
-        preS.setObject(7,book.getCategoryId());
+        preS.setString(1,book.getName());
+        preS.setString(2,book.getAuthor());
+        preS.setInt(3,book.getInventory());
+        preS.setBigDecimal(4,book.getImportPrice());
+        preS.setBigDecimal(5,book.getPrice());
+        preS.setString(6,book.getImage());
+        preS.setInt(7,book.getCategoryId());
 
 //        if (preS.executeUpdate()>0)
 //            System.out.println("Thêm dữ liệu thành công!!!");
@@ -79,24 +82,18 @@ public class BookService {
         return preparedStatement.executeUpdate()>0;
     }
 
-    public boolean updateBook(int id, String name, String describe){
-        try {
+    public boolean updateBook(Book book) throws SQLException {
             String sql = "UPDATE `nhasach`.`books` SET `name` = ?, `author` = ?, `inventory` = ?, `import_price` = ?, `price` = ?, `image` = ?, `cat_id` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(8, id);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, author);
-            preparedStatement.setInt(3, inventory);
-            preparedStatement.setInt(4, importprice);
-            preparedStatement.setInt(5, price);
-            preparedStatement.setString(6, image);
-            preparedStatement.setInt(7, categoryid);
+            preparedStatement.setInt(8, book.getId());
+            preparedStatement.setString(1, book.getName());
+            preparedStatement.setString(2, book.getAuthor());
+            preparedStatement.setInt(3, book.getInventory());
+            preparedStatement.setBigDecimal(4, book.getImportPrice());
+            preparedStatement.setBigDecimal(5, book.getPrice());
+            preparedStatement.setString(6, book.getImage());
+            preparedStatement.setInt(7, book.getCategoryId());
 
             return preparedStatement.executeUpdate()>0;
-        } catch (SQLException throwables) {
-            Logger.getLogger(BookService.class.getName()).log(Level.SEVERE, null, throwables);
-        }
-
-        return false;
     }
 }
