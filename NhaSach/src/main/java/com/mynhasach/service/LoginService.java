@@ -30,7 +30,7 @@ public class LoginService {
      * @throws SQLException if can't connect to db
      */
     public List<Login> getLogins() throws SQLException {
-         String sql = "SELECT * FROM logins ";
+         String sql = "SELECT * FROM login ";
 
         PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
 
@@ -48,6 +48,24 @@ public class LoginService {
             logins.add(l);
         }
         return logins;
+    }
+
+    public Login getLoginByUsername(String username) throws SQLException {
+        String sql = "SELECT * FROM login Where username = ?;";
+
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+        preparedStatement.setString(1,username);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        Login l = new Login();
+        while (rs.next()){
+            l.setId(rs.getInt("id"));
+            l.setAvatar(rs.getString("avatar"));
+            l.setEmail(rs.getString("email"));
+            l.setPassword(rs.getString("password"));
+            l.setUsername(rs.getString("username"));
+        }
+        return l;
     }
 
     public boolean addLogin(Login login) throws SQLException {

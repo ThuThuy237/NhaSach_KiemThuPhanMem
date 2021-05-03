@@ -9,12 +9,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ManagerController implements Initializable {
-    @FXML private Label label;
+    @FXML private Label lbusername;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        this.lbusername.setText(App.getUser().getUsername());
     }
 
 }
