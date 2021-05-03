@@ -32,6 +32,7 @@ public class CategoryService {
         return categories;
     }
     public boolean addCate(Category cate) throws SQLException {
+
             String sql = "INSERT INTO `nhasach`.`categories` (`name`, `describe`) VALUES (?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setString(1,cate.getName());
@@ -57,6 +58,5 @@ public class CategoryService {
             preparedStatement.setString(2, cate.getDescribe());
 
             return preparedStatement.executeUpdate()>0;
-
     }
 }

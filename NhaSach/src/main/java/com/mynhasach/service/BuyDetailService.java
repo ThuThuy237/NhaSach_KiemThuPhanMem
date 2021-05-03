@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mynhasach.service;
 
 import com.mynhasach.pojo.BuyDetail;
@@ -58,7 +53,7 @@ public class BuyDetailService {
     public boolean addBuyDetail(BuyDetail buy) throws SQLException {
             String sql = "INSERT INTO `nhasach`.`buydetails` (`quantily`, `price`, `book_id`, `buy_id`) VALUES (?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
-            stm.setInt(1,buy.getQuantily());
+            stm.setInt(1,buy.getQuantity());
             stm.setBigDecimal(2,buy.getPrice());
             stm.setInt(3,buy.getBookId());
             stm.setInt(4,buy.getBuyId());
@@ -80,7 +75,7 @@ public class BuyDetailService {
             String sql = "UPDATE `nhasach`.`buydetails` SET `quanlity` = ?, `price` = ?, `book_id` = ?, `buy_id` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(5, buy.getId());
-            preparedStatement.setInt(1, buy.getQuantily());
+            preparedStatement.setInt(1, buy.getQuantity());
             preparedStatement.setBigDecimal(2, buy.getPrice());
             preparedStatement.setInt(3, buy.getBookId());
             preparedStatement.setInt(4, buy.getBuyId());

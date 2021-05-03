@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mynhasach.nhasach.ManagerController">
    <children>
       <SplitPane dividerPositions="0.2526737967914438" prefHeight="500.0" prefWidth="600.0">
         <items>
@@ -32,7 +32,7 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Label layoutX="13.0" layoutY="128.0" prefHeight="31.0" prefWidth="128.0" style="-fx-background-color: #689C97;" styleClass="center" text="Manager" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="128.0">
+                  <Label fx:id="lbusername" layoutX="13.0" layoutY="128.0" prefHeight="31.0" prefWidth="128.0" style="-fx-background-color: #689C97;" styleClass="center" text="Manager" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="128.0">
                      <font>
                         <Font size="14.0" />
                      </font>

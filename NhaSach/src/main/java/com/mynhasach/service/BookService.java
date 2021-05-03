@@ -16,10 +16,7 @@ import java.util.List;
  * @author thuy
  */
 public class BookService {
-
     private Connection conn;
-
-
 
     public BookService() throws SQLException {
         this.conn = jdbcUtils.getConn();
@@ -77,15 +74,15 @@ public class BookService {
         preS.close();
 
     }
-    public boolean deleteBook(int id) throws SQLException{
-            String sql = "DELETE FROM `nhasach`.`books` WHERE (`id` = ?);";
-            PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
+    public boolean deleteBook(int id) throws SQLException {
+        String sql = "DELETE FROM `nhasach`.`books` WHERE (`id` = ?);";
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
 
-            return preparedStatement.executeUpdate()>0;
-
+        return preparedStatement.executeUpdate()>0;
     }
-    public boolean updateBook(Book book) throws SQLException{
+
+    public boolean updateBook(Book book) throws SQLException {
             String sql = "UPDATE `nhasach`.`books` SET `name` = ?, `author` = ?, `inventory` = ?, `import_price` = ?, `price` = ?, `image` = ?, `cat_id` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(8, book.getId());
