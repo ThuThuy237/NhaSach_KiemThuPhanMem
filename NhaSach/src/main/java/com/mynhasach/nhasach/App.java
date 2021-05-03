@@ -1,5 +1,6 @@
 package com.mynhasach.nhasach;
 
+import com.mynhasach.pojo.Login;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,6 +19,25 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private static Login user;
+    private static Boolean isAuthenticate = false;
+
+    public static Login getUser() {
+        return user;
+    }
+
+    public static void setUser(Login user) {
+        App.user = user;
+    }
+
+    public static Boolean getIsAuthenticate() {
+        return isAuthenticate;
+    }
+
+    public static void setIsAuthenticate(Boolean isAuthenticate) {
+        App.isAuthenticate = isAuthenticate;
+    }
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -38,5 +58,4 @@ public class App extends Application {
     public static void main(String[] args) {
         launch();
     }
-
 }

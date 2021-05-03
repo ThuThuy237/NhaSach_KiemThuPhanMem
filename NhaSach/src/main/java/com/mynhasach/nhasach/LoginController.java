@@ -7,22 +7,15 @@ import com.mynhasach.service.LoginService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class LoginController {
 
     @FXML private TextField txtUserName;
     @FXML private TextField txtPassword;
     @FXML private Button btnLogin;
-    @FXML private Hyperlink hlinkForgotPass;
-    @FXML private Hyperlink hLinkSignUp;
     @FXML private VBox vbLogin;
     @FXML private Label tAlertUser;
     @FXML private Label tAlertPass;
@@ -61,7 +54,8 @@ public class LoginController {
             String password = loginsv.getPasswordByUsername(username);
 
             if (userPass.equals(password)){
-                System.out.println("pass");
+                App.setUser(loginsv.getLoginByUsername(username));
+                App.setIsAuthenticate(true);
                 SwitchToManager(actionEvent);
             }else if(!userPass.equals(password)){
                 tAlertPass.setText("password is incorrect");
