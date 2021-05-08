@@ -31,4 +31,9 @@ Text.title{
     -fx-text-fill: red;
     -fx-opacity: 0.75;
 }
-
+.myButtonYellow:hover {
+    -fx-background-color: #FFFF66 !important ;
+}
+.myButtonBlue:hover {
+    -fx-background-color: #57B9AF !important ;
+}
