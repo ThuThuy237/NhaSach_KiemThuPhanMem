@@ -28,12 +28,11 @@ public class ManagerController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.lbusername.setText(App.getUser().getUsername());
 
-        try {
-            LoadPane("importBook.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+//        try {
+//            LoadPane("importBook.fxml");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         btnBanSach.setOnMouseClicked(e->{
             try {

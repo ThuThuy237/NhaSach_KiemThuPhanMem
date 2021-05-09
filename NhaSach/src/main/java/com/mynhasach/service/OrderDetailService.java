@@ -25,7 +25,7 @@ public class OrderDetailService {
      * @throws SQLException if can't connect to db
      */
     public List<OrderDetail> getOrderDetails() throws SQLException {
-         String sql = "SELECT * FROM orderdetails ";
+         String sql = "SELECT * FROM orderdetail ";
 
         PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
 
@@ -45,7 +45,7 @@ public class OrderDetailService {
         return orderDetails;
     }
     public boolean addOrderDetail(OrderDetail order) throws SQLException {
-            String sql = "INSERT INTO `nhasach`.`orderdetails` (`quanlity`, `price`, `book_id`, `order_id` ) VALUES (?, ?, ?, ?);";
+            String sql = "INSERT INTO `nhasach`.`order_detail` (`quantity`, `price`, `book_id`, `order_id` ) VALUES (?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setInt(1,order.getQuantity());
             stm.setBigDecimal(2,order.getPrice());
@@ -57,7 +57,7 @@ public class OrderDetailService {
     }
 
     public boolean deleteOrderDetail(int id) throws SQLException{
-            String sql = "DELETE FROM `nhasach`.`orderdetails` WHERE (`id` = ?);";
+            String sql = "DELETE FROM `nhasach`.`orderdetail` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
@@ -66,7 +66,7 @@ public class OrderDetailService {
     }
 
     public boolean updateOrderDetail(OrderDetail order) throws SQLException{
-            String sql = "UPDATE `nhasach`.`orderdetails` SET `quantity` = ?, `price` = ?, `book_id` = ?, `order_id` = ? WHERE (`id` = ?);";
+            String sql = "UPDATE `nhasach`.`orderdetail` SET `quantity` = ?, `price` = ?, `book_id` = ?, `order_id` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(5, order.getId());
             preparedStatement.setInt(1, order.getQuantity());

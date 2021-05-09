@@ -51,6 +51,32 @@ public class BookService {
         return books;
     }
 
+    public List<Book> getBooksByCate(int catID) throws SQLException {
+        String sql = "SELECT * FROM books WHERE (`cat_id` = ?); ";
+
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+        preparedStatement.setInt(1, catID);
+
+        ResultSet rs = preparedStatement.executeQuery();
+
+        List<Book> books = new ArrayList<>();
+        while (rs.next()){
+            Book b = new Book();
+            b.setId(rs.getInt("id"));
+            b.setName(rs.getString("name"));
+            b.setAuthor(rs.getString("author"));
+            b.setImage(rs.getString("image"));
+            b.setInventory(rs.getInt("inventory"));
+            b.setImportPrice(BigDecimal.valueOf(rs.getInt("import_price")));
+            b.setPrice(BigDecimal.valueOf(rs.getInt("price")));
+            b.setCategoryId(rs.getInt("cat_id"));
+
+
+            books.add(b);
+        }
+        return books;
+    }
+
     /**
      * add a new book to database
      * @param book

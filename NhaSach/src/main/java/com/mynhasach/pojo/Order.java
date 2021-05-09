@@ -1,11 +1,25 @@
 package com.mynhasach.pojo;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Order {
     private int id;
-    private Date date;
+    private LocalDateTime date;
+
+    public Order() {
+    }
+
+    public Order(LocalDateTime date, BigDecimal total, int cusId, int empId) {
+        this.date = date;
+        this.total = total;
+        this.cusId = cusId;
+        this.empId = empId;
+    }
+
+
     private BigDecimal total;
     private int cusId;
     private int empId;
@@ -27,14 +41,14 @@ public class Order {
     /**
      * @return the date
      */
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
     /**
      * @param date the date to set
      */
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

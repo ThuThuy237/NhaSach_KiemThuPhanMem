@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="593.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mynhasach.nhasach.SellBook">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="593.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mynhasach.nhasach.SellBookController">
         <opaqueInsets>
             <Insets left="20.0" />
         </opaqueInsets>
@@ -39,59 +39,81 @@
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
+                     <padding>
+                        <Insets right="50.0" />
+                     </padding>
                   </Label>
                </children>
             </HBox>
          </children>
             </VBox>
-            <VBox layoutX="5.0" layoutY="396.0" prefHeight="190.0" prefWidth="642.0">
+            <VBox layoutY="395.0" prefHeight="190.0" prefWidth="642.0">
          <children>
-                    <TableView fx:id="table_buy" prefHeight="194.0" prefWidth="630.0" styleClass="center" tableMenuButtonVisible="true">
-                        <columns>
-                            <TableColumn fx:id="col_name" prefWidth="352.00004291534424" text="Tên sách" />
-                            <TableColumn fx:id="col_amount" prefWidth="112.79998779296875" text="Số lượng" />
-                            <TableColumn fx:id="col_bill" minWidth="0.0" prefWidth="170.4000244140625" text="Thành tiền" />
-                        </columns>
-                    </TableView>
+             <TableView fx:id="tableSell" prefHeight="194.0" prefWidth="630.0" style="-fx-border-color: #99CCCC;" styleClass="center" tableMenuButtonVisible="true">
+                 <columns>
+                     <TableColumn fx:id="nameOfBookSell" prefWidth="212.00000315904617" text="Book Id" />
+                     <TableColumn fx:id="numOfBookSell" prefWidth="131.2000274658203" text="quantity" />
+                     <TableColumn fx:id="totalPrice" minWidth="0.0" prefWidth="293.5999450683594" text="Total " />
+                 </columns>
+             </TableView>
          </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
             </VBox>
       <VBox layoutX="-1.0" layoutY="119.0" prefHeight="276.0" prefWidth="314.0">
          <children>
             <HBox prefHeight="39.0" prefWidth="314.0">
                <children>
                   <Label prefHeight="18.0" prefWidth="100.0" text="Customer" />
-                  <ComboBox prefWidth="150.0" />
+                  <ComboBox fx:id="customer" prefWidth="150.0" promptText="Customer" style="-fx-background-color: #FFFFFF; -fx-border-color: #99CCCC;" />
                </children>
             </HBox>
             <HBox prefHeight="42.0" prefWidth="314.0">
                <children>
                   <Label prefHeight="18.0" prefWidth="98.0" text="Name of book" />
-                  <ComboBox prefWidth="150.0" />
+                  <ComboBox fx:id="book" prefWidth="150.0" promptText="Book" style="-fx-background-color: #FFFFFF; -fx-border-color: #99CCCC;" />
                </children>
             </HBox>
-            <HBox prefHeight="67.0" prefWidth="314.0">
+            <HBox prefHeight="50.0" prefWidth="294.0">
                <children>
                             <Label prefHeight="26.0" prefWidth="98.0" text="Amount:">
                                 <font>
                                     <Font name="System Bold" size="13.0" />
                                 </font>
                             </Label>
-                            <TextField fx:id="txtAmount" prefHeight="26.0" prefWidth="150.0" styleClass="field" stylesheets="@style.css" />
+                            <TextField fx:id="quantity" prefHeight="26.0" prefWidth="150.0" styleClass="field" stylesheets="@style.css" />
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="294.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="98.0" text="Price:">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="price" disable="true" prefHeight="26.0" prefWidth="150.0" styleClass="field" stylesheets="@style.css" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                            <Button fx:id="btnAdd" mnemonicParsing="false" stylesheets="@style.css" text="Add">
+                            <Button fx:id="add" mnemonicParsing="false" stylesheets="@style.css" text="Add">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonBlue" />
-                     </styleClass></Button>
-                            <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" stylesheets="@style.css" text="Update">
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin></Button>
+                            <Button fx:id="update" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" stylesheets="@style.css" text="Update">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonBlue" />
-                     </styleClass></Button>
-                            <Button fx:id="btnDelete" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" stylesheets="@style.css" text="Delete">
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin></Button>
+                            <Button fx:id="delete" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" stylesheets="@style.css" text="Delete">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonBlue" />
@@ -99,16 +121,28 @@
                </children>
             </HBox>
          </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
       </VBox>
-      <VBox layoutX="420.0" layoutY="118.0" prefHeight="217.0" prefWidth="191.0">
+      <Button fx:id="addReceipt" layoutX="398.0" layoutY="347.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="180.0" stylesheets="@style.css" text="Add receipt">
+         <styleClass>
+            <String fx:value="btn-form" />
+            <String fx:value="myButtonBlue" />
+         </styleClass>
+      </Button>
+      <VBox layoutX="398.0" layoutY="118.0" prefHeight="218.0" prefWidth="213.0">
          <children>
-            <TableView prefHeight="217.0" prefWidth="172.0">
-              <columns>
-                <TableColumn prefWidth="190.40001220703124" text="Tên sách" />
-              </columns>
-            </TableView>
+             <TableView fx:id="tableBook" prefHeight="218.0" prefWidth="187.0" style="-fx-border-color: #99CCCC;">
+                 <columns>
+                     <TableColumn fx:id="nameColumn" prefWidth="190.40001220703124" text="Book name" />
+                 </columns>
+               <VBox.margin>
+                  <Insets right="20.0" />
+               </VBox.margin>
+             </TableView>
          </children>
       </VBox>
-      <ComboBox layoutX="428.0" layoutY="91.0" prefWidth="150.0" />
+      <ComboBox fx:id="category" layoutX="398.0" layoutY="81.0" prefWidth="150.0" promptText="Category" style="-fx-background-color: #FFFFFF; -fx-border-color: #99CCCC;" />
         </children>
     </AnchorPane>
