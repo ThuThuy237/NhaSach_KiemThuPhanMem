@@ -25,7 +25,7 @@ public class OrderDetailService {
      * @throws SQLException if can't connect to db
      */
     public List<OrderDetail> getOrderDetails() throws SQLException {
-         String sql = "SELECT * FROM orderdetail ";
+         String sql = "SELECT * FROM order_detail ";
 
         PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
 
@@ -57,7 +57,7 @@ public class OrderDetailService {
     }
 
     public boolean deleteOrderDetail(int id) throws SQLException{
-            String sql = "DELETE FROM `nhasach`.`orderdetail` WHERE (`id` = ?);";
+            String sql = "DELETE FROM `nhasach`.`order_detail` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
@@ -66,7 +66,7 @@ public class OrderDetailService {
     }
 
     public boolean updateOrderDetail(OrderDetail order) throws SQLException{
-            String sql = "UPDATE `nhasach`.`orderdetail` SET `quantity` = ?, `price` = ?, `book_id` = ?, `order_id` = ? WHERE (`id` = ?);";
+            String sql = "UPDATE `nhasach`.`order_detail` SET `quantity` = ?, `price` = ?, `book_id` = ?, `order_id` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(5, order.getId());
             preparedStatement.setInt(1, order.getQuantity());
