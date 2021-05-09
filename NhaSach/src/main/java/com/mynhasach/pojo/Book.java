@@ -17,9 +17,23 @@ public class Book {
     private String author;
     private int inventory;
     private BigDecimal importPrice;
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
     private BigDecimal price;
     private String image;
     private int categoryId;
+
+    public Book(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Book() {
+    }
 
     /**
      * @return the id

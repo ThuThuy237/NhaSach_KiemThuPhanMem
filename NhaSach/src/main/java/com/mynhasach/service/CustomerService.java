@@ -29,7 +29,7 @@ public class CustomerService {
      * @throws java.text.ParseException
      */
     public List<Customer> getCustomers() throws SQLException, ParseException {
-         String sql = "SELECT * FROM customers ";
+         String sql = "SELECT * FROM customer ";
 
         PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
 

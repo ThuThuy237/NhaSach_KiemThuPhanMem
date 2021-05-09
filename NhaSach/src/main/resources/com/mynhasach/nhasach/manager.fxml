@@ -8,14 +8,17 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="599.0" prefWidth="814.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mynhasach.nhasach.ManagerController">
     <children>
-        <SplitPane dividerPositions="0.2526737967914438" prefHeight="599.0" prefWidth="814.0">
+        <SplitPane dividerPositions="0.2527" prefHeight="599.0" prefWidth="814.0">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="222.0" style="-fx-background-color: #689C97;">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="597.0" prefWidth="210.0" style="-fx-background-color: #689C97;">
                     <children>
                         <Pane layoutX="20.0" layoutY="20.0" prefHeight="196.0" prefWidth="162.0" style="-fx-background-color: #689C97;" AnchorPane.bottomAnchor="382.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                             <children>
@@ -67,17 +70,48 @@
                   </Button>
                     </children>
                 </AnchorPane>
-                <AnchorPane fx:id="containerPane" minHeight="0.0" minWidth="0.0" prefHeight="598.0" prefWidth="621.0" style="-fx-background-color: #99D1D3;">
+                <AnchorPane fx:id="containerPane" minHeight="0.0" minWidth="0.0" prefHeight="601.0" prefWidth="613.0">
                <children>
                   <ImageView fitHeight="241.0" fitWidth="293.0" layoutX="156.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/logo.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="203.0" layoutY="380.0" prefHeight="27.0" prefWidth="214.0" style="-fx-background-color: #99D1D3;" text="Welcome to my bookstore" textFill="#2b15e8">
+                  <Label layoutX="100.0" layoutY="326.0" text="Welcome to my bookstore" textAlignment="CENTER">
                      <font>
-                        <Font name="System Italic" size="18.0" />
+                        <Font name="System Italic" size="36.0" />
                      </font>
+                     <textFill>
+                        <RadialGradient centerX="0.5" centerY="0.5" focusDistance="0.0186916600877991" radius="0.9672896750619479">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.15614815056324005" green="0.07111111283302307" blue="0.800000011920929" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.007680491551459294">
+                                 <color>
+                                    <Color red="0.15614815056324005" green="0.07111111283302307" blue="0.800000011920929" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.2335164835164836">
+                                 <color>
+                                    <Color red="0.6999422907829285" green="0.053199999034404755" blue="0.7599999904632568" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="0.4807692307692308">
+                                 <color>
+                                    <Color red="0.7599999904632568" green="0.053199999034404755" blue="0.3910750448703766" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </RadialGradient>
+                     </textFill>
                   </Label>
                </children></AnchorPane>
             </items>

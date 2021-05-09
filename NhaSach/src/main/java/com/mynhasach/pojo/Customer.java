@@ -10,6 +10,11 @@ public class Customer {
     private String address;
     private String phone;
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
     /**
      * @return the id
      */

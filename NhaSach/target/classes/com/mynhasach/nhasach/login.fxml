@@ -61,7 +61,7 @@
             <String fx:value="btn-form" />
             <String fx:value="myButtonBlue" />
          </styleClass></Button>
-      <HBox alignment="TOP_RIGHT" prefHeight="46.0" prefWidth="395.0">
+      <HBox alignment="TOP_RIGHT" prefHeight="27.0" prefWidth="600.0">
          <children>
             <Label prefHeight="27.0" prefWidth="149.0" text="Don't have an account ?" textAlignment="CENTER">
                <font>
@@ -74,6 +74,12 @@
                </font>
             </Hyperlink>
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets top="30.0" />
+         </VBox.margin>
       </HBox>
    </children>
 </VBox>
