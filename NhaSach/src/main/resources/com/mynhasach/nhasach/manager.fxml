@@ -34,7 +34,7 @@
                               </Label>
                             </children>
                         </Pane>
-                        <Button fx:id="btnQuanLy" layoutX="28.0" layoutY="467.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: #F9E54E;" text="Manage account">
+                        <Button fx:id="btnQuanLy" layoutX="31.0" layoutY="467.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: #F9E54E;" text="Manage account">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonYellow" />
@@ -63,6 +63,12 @@
                      </styleClass>
                   </Button>
                   <Button fx:id="btnReceipt" layoutX="28.0" layoutY="366.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #F9E54E;" text="Receipt">
+                     <styleClass>
+                        <String fx:value="btn-form" />
+                        <String fx:value="myButtonYellow" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="31.0" layoutY="415.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: #F9E54E;" stylesheets="@style.css" text="List of book">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonYellow" />
