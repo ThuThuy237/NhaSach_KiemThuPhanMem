@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 public class ManagerController implements Initializable {
     @FXML private Label lbusername;
     @FXML private ImageView imageView;
-    @FXML private Button btnNhapSach, btnBanSach, btnQuanLy, btnLogOut;
+    @FXML private Button btnNhapSach, btnBanSach, btnCustomer,btnReceipt, btnQuanLy, btnLogOut;
     @FXML private AnchorPane containerPane;
 
 
@@ -28,11 +28,6 @@ public class ManagerController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.lbusername.setText(App.getUser().getUsername());
 
-//        try {
-//            LoadPane("importBook.fxml");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
         btnBanSach.setOnMouseClicked(e->{
             try {
@@ -43,12 +38,35 @@ public class ManagerController implements Initializable {
         });
         btnNhapSach.setOnMouseClicked(e->{
             try {
-                LoadPane("importBook.fxml");
+                LoadPane("BuyBook.fxml");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });
 
+        btnCustomer.setOnMouseClicked(e->{
+            try {
+                LoadPane("ManageCustomer.fxml");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        btnReceipt.setOnMouseClicked(e->{
+            try {
+                LoadPane("ManageReceipt.fxml");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        btnQuanLy.setOnMouseClicked(e->{
+            try {
+                LoadPane("ManageAccount.fxml");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
     }
 
     public void logout(){

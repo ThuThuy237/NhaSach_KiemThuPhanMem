@@ -145,7 +145,7 @@ public class SellBookController implements Initializable {
                             }
                         }else {
                             try {
-                                new Util().showAlert(Alert.AlertType.INFORMATION, window,"notifications","no book in receipt!!!", 2000);
+                                new Util().showAlert(Alert.AlertType.INFORMATION, window,"notifications","no book in receipt!!!", 1000);
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }

@@ -95,7 +95,7 @@
                   <TextField fx:id="price" disable="true" prefHeight="26.0" prefWidth="150.0" styleClass="field" stylesheets="@style.css" />
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="122.0" prefWidth="314.0">
                <children>
                             <Button fx:id="add" mnemonicParsing="false" stylesheets="@style.css" text="Add">
                      <styleClass>
