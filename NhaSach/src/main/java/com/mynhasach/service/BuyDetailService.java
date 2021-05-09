@@ -23,7 +23,7 @@ public class BuyDetailService {
     }
     
     public List<BuyDetail> getBuyDetails() throws SQLException {
-         String sql = "SELECT * FROM buydetails ";
+         String sql = "SELECT * FROM buy_detail ";
 
         PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
 
@@ -51,7 +51,7 @@ public class BuyDetailService {
      * @throws SQLException
      */
     public boolean addBuyDetail(BuyDetail buy) throws SQLException {
-            String sql = "INSERT INTO `nhasach`.`buydetails` (`quantily`, `price`, `book_id`, `buy_id`) VALUES (?, ?, ?, ?);";
+            String sql = "INSERT INTO `nhasach`.`buy_detail` (`quantity`, `price`, `book_id`, `buy_id`) VALUES (?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setInt(1,buy.getQuantity());
             stm.setBigDecimal(2,buy.getPrice());
@@ -62,7 +62,7 @@ public class BuyDetailService {
 
     }
     public boolean deleteBuyDetail(int id) throws SQLException{
-            String sql = "DELETE FROM `nhasach`.`buydetails` WHERE (`id` = ?);";
+            String sql = "DELETE FROM `nhasach`.`buy_detail` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
@@ -72,7 +72,7 @@ public class BuyDetailService {
     }
 
     public boolean updateBuyDetail(BuyDetail buy) throws SQLException{
-            String sql = "UPDATE `nhasach`.`buydetails` SET `quanlity` = ?, `price` = ?, `book_id` = ?, `buy_id` = ? WHERE (`id` = ?);";
+            String sql = "UPDATE `nhasach`.`buy_detail` SET `quantity` = ?, `price` = ?, `book_id` = ?, `buy_id` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(5, buy.getId());
             preparedStatement.setInt(1, buy.getQuantity());

@@ -8,106 +8,142 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="533.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mynhasach.nhasach.BuyBookController">
+   <opaqueInsets>
+      <Insets left="20.0" />
+   </opaqueInsets>
+   <effect>
+      <Blend />
+   </effect>
    <children>
-      <VBox layoutX="2.0" prefHeight="89.0" prefWidth="694.0">
+      <Pane layoutX="8.0" layoutY="21.0" prefHeight="242.0" prefWidth="420.0" visible="false" />
+      <VBox layoutX="-1.0" prefHeight="76.0" prefWidth="642.0">
          <children>
-            <HBox prefHeight="79.0" prefWidth="694.0">
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fitHeight="88.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="91.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@images/logo.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="82.0" prefWidth="586.0" text="BuyBook">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="543.0" text="BuyBook">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
+                     <padding>
+                        <Insets right="50.0" />
+                     </padding>
                   </Label>
                </children>
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="70.0" layoutY="98.0" prefHeight="228.0" prefWidth="256.0">
+      <VBox layoutY="395.0" prefHeight="190.0" prefWidth="642.0">
          <children>
-            <HBox prefHeight="38.0" prefWidth="256.0">
+            <TableView fx:id="tableImport" prefHeight="194.0" prefWidth="630.0" style="-fx-border-color: #99CCCC;" styleClass="center" tableMenuButtonVisible="true">
+               <columns>
+                  <TableColumn fx:id="nameOfBookImport" prefWidth="212.00000315904617" text="Book Id" />
+                  <TableColumn fx:id="numOfBookImport" prefWidth="131.2000274658203" text="quantity" />
+                  <TableColumn fx:id="totalPrice" minWidth="0.0" prefWidth="293.5999450683594" text="Total " />
+               </columns>
+            </TableView>
+         </children>
+         <padding>
+            <Insets left="5.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="-1.0" layoutY="119.0" prefHeight="276.0" prefWidth="314.0">
+         <children>
+            <HBox prefHeight="39.0" prefWidth="314.0">
                <children>
-                  <Label prefHeight="25.0" prefWidth="64.0" text="Author" />
-                  <ComboBox prefHeight="26.0" prefWidth="177.0" promptText="Author" style="-fx-background-color: #FFFFFF; -fx-border-color: #99CCCC;" />
+                  <Label prefHeight="18.0" prefWidth="100.0" text="Supplier" />
+                  <ComboBox fx:id="supplier" prefWidth="150.0" promptText="Supplier" style="-fx-background-color: #FFFFFF; -fx-border-color: #99CCCC;" />
+
                </children>
             </HBox>
-            <HBox prefHeight="42.0" prefWidth="256.0">
+            <HBox prefHeight="42.0" prefWidth="314.0">
                <children>
-                  <Label prefHeight="24.0" prefWidth="67.0" text="Name" />
-                  <ComboBox prefHeight="26.0" prefWidth="174.0" promptText="Name " style="-fx-background-color: #FFFFFF; -fx-border-color: #99CCCC;" />
+                  <Label prefHeight="18.0" prefWidth="98.0" text="Name of book" />
+                  <ComboBox fx:id="book" prefWidth="150.0" promptText="Book" style="-fx-background-color: #FFFFFF; -fx-border-color: #99CCCC;" />
                </children>
             </HBox>
-            <HBox prefHeight="43.0" prefWidth="256.0">
+            <HBox prefHeight="50.0" prefWidth="294.0">
                <children>
-                  <Label prefHeight="35.0" prefWidth="66.0" text="Amount">
+                  <Label prefHeight="26.0" prefWidth="98.0" text="Amount:">
                      <font>
-                        <Font name="System Bold Italic" size="12.0" />
+                        <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <TextField prefHeight="28.0" prefWidth="173.0" styleClass="field" stylesheets="@style.css" />
+                  <TextField fx:id="quantity" prefHeight="26.0" prefWidth="150.0" styleClass="field" stylesheets="@style.css" />
                </children>
             </HBox>
-            <HBox prefHeight="112.0" prefWidth="256.0">
+            <HBox prefHeight="50.0" prefWidth="294.0">
                <children>
-                  <Button mnemonicParsing="false" stylesheets="@style.css" text="Add">
+                  <Label prefHeight="26.0" prefWidth="98.0" text="Price:">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="price" disable="true" prefHeight="26.0" prefWidth="150.0" styleClass="field" stylesheets="@style.css" />
+               </children>
+            </HBox>
+            <HBox prefHeight="122.0" prefWidth="314.0">
+               <children>
+                  <Button fx:id="add" mnemonicParsing="false" stylesheets="@style.css" text="Add">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonBlue" />
                      </styleClass>
                      <HBox.margin>
-                        <Insets right="50.0" />
+                        <Insets right="10.0" />
                      </HBox.margin></Button>
-                  <Button mnemonicParsing="false" stylesheets="@style.css" text="Update">
+                  <Button fx:id="update" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" stylesheets="@style.css" text="Update">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonBlue" />
                      </styleClass>
                      <HBox.margin>
-                        <Insets right="50.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" stylesheets="@style.css" text="Delete">
+                        <Insets right="10.0" />
+                     </HBox.margin></Button>
+                  <Button fx:id="delete" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" stylesheets="@style.css" text="Delete">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonBlue" />
-                     </styleClass>
-                  </Button>
+                     </styleClass></Button>
                </children>
             </HBox>
          </children>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
       </VBox>
-      <VBox layoutX="456.0" layoutY="126.0" prefHeight="200.0" prefWidth="174.0">
+      <Button fx:id="addReceipt" layoutX="398.0" layoutY="347.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="180.0" stylesheets="@style.css" text="Add receipt">
+         <styleClass>
+            <String fx:value="btn-form" />
+            <String fx:value="myButtonBlue" />
+         </styleClass>
+      </Button>
+      <VBox layoutX="398.0" layoutY="118.0" prefHeight="218.0" prefWidth="213.0">
          <children>
-            <TableView prefHeight="205.0" prefWidth="162.0" style="-fx-border-color: #99CCCC;" styleClass="center">
-              <columns>
-                <TableColumn prefWidth="173.60001220703126" text="Book name" />
-              </columns>
+            <TableView fx:id="tableBook" prefHeight="218.0" prefWidth="187.0" style="-fx-border-color: #99CCCC;">
+               <columns>
+                  <TableColumn fx:id="nameColumn" prefWidth="190.40001220703124" text="Book name" />
+               </columns>
+               <VBox.margin>
+                  <Insets right="20.0" />
+               </VBox.margin>
             </TableView>
          </children>
       </VBox>
-      <VBox layoutX="-1.0" layoutY="332.0" prefHeight="200.0" prefWidth="696.0">
-         <children>
-            <TableView prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #99CCCC;" styleClass="center">
-              <columns>
-                <TableColumn prefWidth="316.7999938726425" text="Book name" />
-                <TableColumn prefWidth="113.5999755859375" text="Amount" />
-                  <TableColumn minWidth="0.0" prefWidth="263.2000427246094" text="Total" />
-              </columns>
-            </TableView>
-         </children>
-      </VBox>
-      <ComboBox layoutX="468.0" layoutY="90.0" prefWidth="150.0" promptText="Category" style="-fx-background-color: #FFFFFF; -fx-border-color: #99CCCC;" />
+      <ComboBox fx:id="category" layoutX="398.0" layoutY="81.0" prefWidth="150.0" promptText="Category" style="-fx-background-color: #FFFFFF; -fx-border-color: #99CCCC;" />
    </children>
 </AnchorPane>

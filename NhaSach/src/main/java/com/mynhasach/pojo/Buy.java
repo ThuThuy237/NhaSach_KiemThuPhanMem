@@ -1,15 +1,25 @@
 package com.mynhasach.pojo;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Buy {
     private int id;
-    private Date date;
+    private LocalDateTime date;
     private BigDecimal total;
     private int supId;
     private int empId;
 
+    public Buy(LocalDateTime date, BigDecimal total, int supId, int empId) {
+        this.date = date;
+        this.total = total;
+        this.supId = supId;
+        this.empId = empId;
+    }
+
+    public Buy() {
+    }
     /**
      * @return the id
      */
@@ -27,14 +37,14 @@ public class Buy {
     /**
      * @return the date
      */
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
     /**
      * @param date the date to set
      */
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

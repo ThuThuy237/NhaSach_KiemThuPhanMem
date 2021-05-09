@@ -4,6 +4,16 @@ import java.math.BigDecimal;
 
 public class BuyDetail {
     private int id;
+
+    public BuyDetail(int bookId, int quantity, BigDecimal price) {
+        this.bookId = bookId;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public BuyDetail() {
+    }
+
     private int bookId;
     private int buyId;
     private int quantity;
