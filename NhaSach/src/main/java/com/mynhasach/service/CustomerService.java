@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +46,7 @@ public class CustomerService {
             cus.setGender(rs.getString("gender"));
             cus.setAddress(rs.getString("address"));
             cus.setPhone(rs.getString("phone"));
-            cus.setBirthday(new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString("birthday")));
+            cus.setBirthday(LocalDate.parse(rs.getString("birthday")));
 
             customers.add(cus);
         }
@@ -57,7 +59,7 @@ public class CustomerService {
             stm.setString(2,custom.getGender());
             stm.setString(3,custom.getAddress());
             stm.setString(4,custom.getPhone());
-            stm.setDate(2, (Date) custom.getBirthday());
+            stm.setString(2, custom.getBirthday().toString());
 
 
             return stm.executeUpdate()>0;
@@ -80,7 +82,7 @@ public class CustomerService {
             preparedStatement.setString(2, custom.getGender());
             preparedStatement.setString(3, custom.getAddress());
             preparedStatement.setString(4, custom.getPhone());
-            preparedStatement.setDate(5, (Date) custom.getBirthday());
+            preparedStatement.setString(5, custom.getBirthday().toString());
 
 
             return preparedStatement.executeUpdate()>0;

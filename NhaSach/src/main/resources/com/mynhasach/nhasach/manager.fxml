@@ -68,7 +68,7 @@
                         <String fx:value="myButtonYellow" />
                      </styleClass>
                   </Button>
-                  <Button layoutX="31.0" layoutY="415.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: #F9E54E;" stylesheets="@style.css" text="List of book">
+                  <Button fx:id="btnBookManage" layoutX="31.0" layoutY="415.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: #F9E54E;" stylesheets="@style.css" text="List of book">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonYellow" />

@@ -103,7 +103,7 @@
                         <String fx:value="myButtonBlue" />
                      </styleClass>
                      <HBox.margin>
-                        <Insets right="10.0" />
+                        <Insets right="50.0" />
                      </HBox.margin></Button>
                             <Button fx:id="update" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" stylesheets="@style.css" text="Update">
                      <styleClass>
@@ -111,7 +111,7 @@
                         <String fx:value="myButtonBlue" />
                      </styleClass>
                      <HBox.margin>
-                        <Insets right="10.0" />
+                        <Insets right="50.0" />
                      </HBox.margin></Button>
                             <Button fx:id="delete" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" stylesheets="@style.css" text="Delete">
                      <styleClass>
