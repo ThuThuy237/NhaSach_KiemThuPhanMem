@@ -31,13 +31,12 @@
                               </Label>
                             </children>
                         </Pane>
-                        <Line disable="true" endX="147.99998474121094" endY="165.60000610351562" layoutX="27.0" layoutY="122.0" opacity="0.1" startX="-0.800000011920929" startY="165.60000610351562" AnchorPane.bottomAnchor="310.29999389648435" />
-                        <Button fx:id="btnQuanLy" layoutX="28.0" layoutY="385.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: #F9E54E;" text="Quản lý account">
+                        <Button fx:id="btnQuanLy" layoutX="27.0" layoutY="467.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: #F9E54E;" text="Manage account">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonYellow" />
                      </styleClass></Button>
-                        <Button fx:id="btnBanSach" layoutX="29.0" layoutY="310.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: #F9E54E;" text="Bán sách">
+                        <Button fx:id="btnBanSach" layoutX="28.0" layoutY="261.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: #F9E54E;" text="BuyBook">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonYellow" />
@@ -48,8 +47,19 @@
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonYellow" />
                      </styleClass></Button>
-                        <Line disable="true" endX="142.79995727539062" endY="166.00006103515625" layoutX="34.0" layoutY="198.0" opacity="0.1" startX="-10.000012397766113" startY="166.00001525878906" />
-                        <Button fx:id="btnNhapSach" layoutX="26.0" layoutY="233.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #F9E54E;" text="Nhập sách">
+                  <Button fx:id="btnCustomer" layoutX="24.0" layoutY="299.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #F9E54E;" text="Customer">
+                     <styleClass>
+                        <String fx:value="btn-form" />
+                        <String fx:value="myButtonYellow" />
+                     </styleClass>
+                  </Button>
+                        <Button fx:id="btnNhapSach" layoutX="26.0" layoutY="216.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #F9E54E;" text="ImportBook">
+                     <styleClass>
+                        <String fx:value="btn-form" />
+                        <String fx:value="myButtonYellow" />
+                     </styleClass>
+                  </Button>
+                  <Button fx:id="btnReceipt" layoutX="23.0" layoutY="335.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #F9E54E;" text="Receipt">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonYellow" />
