@@ -51,7 +51,7 @@ public class CustomerService {
         return customers;
     }
     public boolean addCustomer(Customer custom) throws SQLException {
-            String sql = "INSERT INTO `nhasach`.`customers` (`name`, `gender`, `address`, `phone`, `birthday`) VALUES (?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO `nhasach`.`customer` (`name`, `gender`, `address`, `birthday`, `phone`) VALUES (?, ?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setString(1,custom.getName());
             stm.setString(2,custom.getGender());
@@ -64,7 +64,7 @@ public class CustomerService {
     }
 
     public boolean deleteCustomer(int id) throws SQLException{
-            String sql = "DELETE FROM `nhasach`.`customers` WHERE (`id` = ?);";
+            String sql = "DELETE FROM `nhasach`.`customer` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 

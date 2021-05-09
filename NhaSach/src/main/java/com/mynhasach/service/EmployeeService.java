@@ -30,7 +30,7 @@ public class EmployeeService {
      * @throws java.text.ParseException
      */
     public List<Employee> getEmployees() throws SQLException, ParseException {
-         String sql = "SELECT * FROM employees ";
+         String sql = "SELECT * FROM employee ";
 
         PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
 
@@ -49,7 +49,7 @@ public class EmployeeService {
         return employees;
     }
     public boolean addEmployee(Employee employ) throws SQLException {
-            String sql = "INSERT INTO `nhasach`.`employees` (`name`, `title`, `hireDate`) VALUES (?, ?, ?);";
+            String sql = "INSERT INTO `nhasach`.`employee` (`name`, `title`, `hireDate`) VALUES (?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setString(1,employ.getName());
             stm.setString(2,employ.getTitle());
@@ -61,7 +61,7 @@ public class EmployeeService {
     }
 
     public boolean deleteEmployee(int id) throws SQLException{
-            String sql = "DELETE FROM `nhasach`.`employees` WHERE (`id` = ?);";
+            String sql = "DELETE FROM `nhasach`.`employee` WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
 
@@ -71,7 +71,7 @@ public class EmployeeService {
     }
 
     public boolean updateEmployee(Employee employ) throws SQLException{
-            String sql = "UPDATE `nhasach`.`employees` SET `name` = ?, `title` = ?, `hireDate` = ? WHERE (`id` = ?);";
+            String sql = "UPDATE `nhasach`.`employee` SET `name` = ?, `title` = ?, `hireDate` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(4, employ.getId());
             preparedStatement.setString(1, employ.getName());

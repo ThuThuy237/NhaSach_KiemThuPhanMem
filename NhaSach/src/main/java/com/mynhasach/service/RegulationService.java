@@ -39,14 +39,14 @@ public class RegulationService {
             r.setImportMin(rs.getInt("import_min"));
             r.setInventoryMaxWhenImport(rs.getInt("inventory_max_when_import"));
             r.setInventoryMinWhenSell(rs.getInt("inventory_min_when_sell"));
-            r.setUserRole(rs.getInt("id_user"));
+            r.setUserRole(rs.getInt("user_role"));
 
             regulations.add(r);
         }
         return regulations;
     }
     public boolean addRegulation(Regulation regulate) throws SQLException {
-            String sql = "INSERT INTO `nhasach`.`regulations` (`active`, `debt_max`, `import_min`, `inventory_max_when_import`, `inventory_min_when_sell`, `id_user`) VALUES (?, ?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO `nhasach`.`regulations` (`active`, `debt_max`, `import_min`, `inventory_max_when_import`, `inventory_min_when_sell`, `user_role`) VALUES (?, ?, ?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
             stm.setInt(1,regulate.getActive());
             stm.setInt(2,regulate.getDebtMax());
@@ -72,7 +72,7 @@ public class RegulationService {
     }
 
     public boolean updateRegulation(Regulation regulate) throws SQLException{
-            String sql = "UPDATE `nhasach`.`regulations` SET `active` = ?, `debt_max` = ?, `import_min` = ?, `inventory_max_when_import` = ?, `inventory_min_when_sell` = ?, `id_user` = ? WHERE (`id` = ?);";
+            String sql = "UPDATE `nhasach`.`regulations` SET `active` = ?, `debt_max` = ?, `import_min` = ?, `inventory_max_when_import` = ?, `inventory_min_when_sell` = ?, `user_role` = ? WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(7, regulate.getId());
             preparedStatement.setInt(1, regulate.getActive());
