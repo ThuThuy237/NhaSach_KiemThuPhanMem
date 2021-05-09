@@ -10,6 +10,11 @@ package com.mynhasach.pojo;
  * @author thuy
  */
 public class Supplier {
+    @Override
+    public String toString() {
+        return name;
+    }
+
     private int id;
     private String name;
     private String address;
