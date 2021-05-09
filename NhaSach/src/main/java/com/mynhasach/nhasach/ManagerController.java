@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 public class ManagerController implements Initializable {
     @FXML private Label lbusername;
     @FXML private ImageView imageView;
-    @FXML private Button btnNhapSach, btnBanSach, btnCustomer,btnReceipt, btnQuanLy, btnLogOut;
+    @FXML private Button btnNhapSach, btnBanSach, btnCustomer,btnReceipt, btnQuanLy, btnLogOut, btnBookManage;
     @FXML private AnchorPane containerPane;
 
 
@@ -60,6 +60,13 @@ public class ManagerController implements Initializable {
             }
         });
 
+        btnBookManage.setOnMouseClicked(e->{
+            try {
+                LoadPane("ManageListBook.fxml");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
         btnQuanLy.setOnMouseClicked(e->{
             try {
                 LoadPane("ManageAccount.fxml");

@@ -1,12 +1,25 @@
 package com.mynhasach.pojo;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Customer {
     private int id;
     private String name;
     private String gender;
-    private Date birthday;
+    private LocalDate birthday;
+
+    public Customer(String name, String gender, LocalDate birthday, String address, String phone) {
+        this.name = name;
+        this.gender = gender;
+        this.birthday = birthday;
+        this.address = address;
+        this.phone = phone;
+    }
+
+    public Customer() {
+    }
+
     private String address;
     private String phone;
 
@@ -60,14 +73,14 @@ public class Customer {
     /**
      * @return the birthday
      */
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
     /**
      * @param birthday the birthday to set
      */
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
