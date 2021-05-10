@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="553.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mynhasach.nhasach.ManageCustomerController">
+<AnchorPane prefHeight="601.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mynhasach.nhasach.ManageCustomerController">
    <children>
       <VBox layoutX="251.0" prefHeight="134.0" prefWidth="186.0">
          <children>
@@ -88,7 +88,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox layoutY="345.0" prefHeight="211.0" prefWidth="690.0">
+      <VBox layoutY="365.0" prefHeight="211.0" prefWidth="690.0">
          <children>
             <TableView fx:id="tableCustomer" prefHeight="212.0" prefWidth="690.0" style="-fx-border-color: #99CCCC; -fx-background-color: #FFFFFF;">
               <columns>
@@ -98,6 +98,9 @@
                   <TableColumn fx:id="colAddress" prefWidth="129.59994506835938" text="Address" />
                   <TableColumn fx:id="colPhone" prefWidth="156.79998779296875" text="Phone" />
               </columns>
+               <VBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </VBox.margin>
             </TableView>
          </children>
       </VBox>
