@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,6 +6,7 @@
  */
 package com.mynhasach.service;
 
+import com.mynhasach.pojo.Buy;
 import com.mynhasach.pojo.Login;
 
 import java.sql.*;
@@ -21,7 +23,7 @@ public class LoginService {
 
     private Connection conn;
 
-    public LoginService(Connection conn) throws SQLException {
+    public LoginService() throws SQLException {
         this.conn = jdbcUtils.getConn();
     }
     /**
@@ -101,4 +103,28 @@ public class LoginService {
         return preparedStatement.executeQuery().next();
     }
 
+    public boolean deleteLogin(int id) throws SQLException{
+        String sql = "DELETE FROM `nhasach`.`login` WHERE (`id` = ?);";
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+        preparedStatement.setInt(1, id);
+
+        return preparedStatement.executeUpdate()>0;
+
+    }
+
+    public boolean updateLogin(Login login) throws SQLException{
+        String sql = "UPDATE `nhasach`.`login` SET `username` = ?, `password` = ?, `email` = ?, `avatar` = ?, `login_role` = ?  WHERE (`id` = ?);";
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+        preparedStatement.setInt(6, login.getId());
+        preparedStatement.setString(1, login.getUsername());
+        preparedStatement.setString(2, login.getPassword());
+        preparedStatement.setString(3, login.getEmail());
+        preparedStatement.setString(4, login.getAvatar());
+        preparedStatement.setString(5,"USER");
+
+        return preparedStatement.executeUpdate()>0;
+
+
+    }
 }
+
