@@ -54,7 +54,7 @@ public class ManagerController implements Initializable {
 
         btnReceipt.setOnMouseClicked(e->{
             try {
-                LoadPane("ManageReceipt.fxml");
+                LoadPane("ManageCategory.fxml");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

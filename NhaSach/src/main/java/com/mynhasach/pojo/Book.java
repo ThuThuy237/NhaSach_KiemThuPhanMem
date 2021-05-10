@@ -35,6 +35,27 @@ public class Book {
     public Book() {
     }
 
+    public Book(String name, String author, int inventory, BigDecimal importPrice, BigDecimal price, String image, int categoryId) {
+        this.name = name;
+        this.author = author;
+        this.inventory = inventory;
+        this.importPrice = importPrice;
+        this.price = price;
+        this.image = image;
+        this.categoryId = categoryId;
+    }
+
+    public Book(int id, String name, String author, int inventory, BigDecimal importPrice, BigDecimal price, String image, int categoryId) {
+        this.id = id;
+        this.name = name;
+        this.author = author;
+        this.inventory = inventory;
+        this.importPrice = importPrice;
+        this.price = price;
+        this.image = image;
+        this.categoryId = categoryId;
+    }
+
     /**
      * @return the id
      */

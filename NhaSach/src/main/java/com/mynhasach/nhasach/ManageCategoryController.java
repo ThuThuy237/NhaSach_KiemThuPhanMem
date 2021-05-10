@@ -1,12 +1,10 @@
 package com.mynhasach.nhasach;
 
 import com.mynhasach.pojo.Book;
-import com.mynhasach.pojo.BuyDetail;
-import com.mynhasach.pojo.Customer;
+import com.mynhasach.pojo.Category;
 import com.mynhasach.service.BookService;
-import com.mynhasach.service.CustomerService;
+import com.mynhasach.service.CategoryService;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,20 +17,15 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.ResourceBundle;
 
-public class ManageCustomerController implements Initializable {
+public class ManageCategoryController implements Initializable {
     @FXML
-    private TextField tfFullName;
+    private TextField tfId;
     @FXML
-    private TextField tfAddress;
+    private TextField tfName;
     @FXML
-    private TextField tfPhone;
-    @FXML
-    private ComboBox<String> cbGender;
-    @FXML
-    private DatePicker datePicker;
+    private TextField tfDecrible;
     @FXML
     private Button add;
     @FXML
@@ -40,46 +33,38 @@ public class ManageCustomerController implements Initializable {
     @FXML
     private Button delete;
     @FXML
-    private TableView<Customer> tableCustomer;
+    private TableView<Category> tableCategory;
     @FXML
-    private TableColumn<Customer,String> colName;
+    private TableColumn<Category,Integer> colId;
     @FXML
-    private TableColumn<Customer,String> colGender;
+    private TableColumn<Category,String> colName;
     @FXML
-    private TableColumn<Customer, Date> colDateofBirth;
+    private TableColumn<Category, String> colDes;
     @FXML
-    private TableColumn<Customer,String> colAddress;
-    @FXML
-    private TableColumn<Customer,String> colPhone;
-    private Customer customer;
+    private Category category;
     @FXML
     private Window window;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            loadListCustomer();
+            loadListCate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        ObservableList<String> list = FXCollections.observableArrayList("Male","Female");
-        cbGender.setItems(list);
-
         add.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 if(checkEmpty()){
-
                     try {
-                        customer = new Customer(tfFullName.getText(),cbGender.getValue(), datePicker.getValue(),
-                                tfAddress.getText(), tfPhone.getText());
-                        CustomerService customerService = new CustomerService();
-                        if (customerService.addCustomer(customer)){
+                        category = new Category(tfName.getText(),tfDecrible.getText());
+                        CategoryService categoryServicee = new CategoryService();
+                        if (categoryServicee.addCate(category)){
                             try {
-                                new Util().showAlert(Alert.AlertType.INFORMATION, window,"notifications","Add new Customer success!!!", 1000);
-                                loadListCustomer();
+                                new Util().showAlert(Alert.AlertType.INFORMATION, window,"notifications","Add new Cate success!!!", 1000);
+                                loadListCate();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -90,7 +75,7 @@ public class ManageCustomerController implements Initializable {
                                 e.printStackTrace();
                             }
                         }
-                        loadListCustomer();
+                        loadListCate();
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
                     } catch (ParseException e) {
@@ -98,7 +83,7 @@ public class ManageCustomerController implements Initializable {
                     }
                 }else {
                     try {
-                        new Util().showAlert(Alert.AlertType.INFORMATION, window,"Error","Please complete information!", 2000);
+                        new Util().showAlert(Alert.AlertType.INFORMATION, window,"!!!","Please complete information!", 2000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -109,26 +94,26 @@ public class ManageCustomerController implements Initializable {
         delete.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if(tableCustomer.getSelectionModel().isEmpty()){
+                if(tableCategory.getSelectionModel().isEmpty()){
                     try {
-                        new Util().showAlert(Alert.AlertType.ERROR, window,"Error","Select the customer you want to delete", 0);
+                        new Util().showAlert(Alert.AlertType.ERROR, window,"Error","Select row you want to delete", 0);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }else {
                     try {
-                        CustomerService customerService = new CustomerService();
-                        if(customerService.deleteCustomer(tableCustomer.getSelectionModel().getSelectedItem().getId()) ){
+                        CategoryService servicece = new CategoryService();
+                        if(servicece.deleteCate(tableCategory.getSelectionModel().getSelectedItem().getId()) ){
                             try {
                                 new Util().showAlert(Alert.AlertType.INFORMATION, window,"Notion","Delete success!", 0);
-                                loadListCustomer();
+                                loadListCate();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
                         }else{
                             try {
                                 new Util().showAlert(Alert.AlertType.INFORMATION, window,"Notion","Fail !!!", 0);
-                                loadListCustomer();
+                                loadListCate();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -146,9 +131,9 @@ public class ManageCustomerController implements Initializable {
         update.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                if(tableCustomer.getSelectionModel().isEmpty()){
+                if(tableCategory.getSelectionModel().isEmpty()){
                     try {
-                        new Util().showAlert(Alert.AlertType.ERROR, window,"Error","Select the customer you want to update", 0);
+                        new Util().showAlert(Alert.AlertType.ERROR, window,"Error","Select row you want to update", 0);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -157,14 +142,13 @@ public class ManageCustomerController implements Initializable {
                     if(checkEmpty()){
 
                         try {
-                            customer = new Customer(tableCustomer.getSelectionModel().getSelectedItem().getId()
-                                    ,tfFullName.getText(),cbGender.getValue(), datePicker.getValue(),
-                                    tfAddress.getText(), tfPhone.getText());
-                            CustomerService customerService = new CustomerService();
-                            if (customerService.updateCustomer(customer)){
+                            category = new Category(tableCategory.getSelectionModel().getSelectedItem().getId()
+                                    , tfName.getText(),tfDecrible.getText());
+                            CategoryService categoryService = new CategoryService();
+                            if (categoryService.updateCate(category)){
                                 try {
-                                    new Util().showAlert(Alert.AlertType.INFORMATION, window,"notifications","Update Customer success!!!", 1000);
-                                    loadListCustomer();
+                                    new Util().showAlert(Alert.AlertType.INFORMATION, window,"notifications","Update Category success!!!", 1000);
+                                    loadListCate();
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
@@ -175,7 +159,7 @@ public class ManageCustomerController implements Initializable {
                                     e.printStackTrace();
                                 }
                             }
-                            loadListCustomer();
+                            loadListCate();
                         } catch (SQLException throwables) {
                             throwables.printStackTrace();
                         } catch (ParseException e) {
@@ -192,14 +176,12 @@ public class ManageCustomerController implements Initializable {
                 }
             }
         });
-        this.tableCustomer.setRowFactory(obj -> {
+        this.tableCategory.setRowFactory(obj -> {
             TableRow r = new TableRow();
             r.setOnMouseClicked(e -> {
-                tfFullName.setText(tableCustomer.getSelectionModel().getSelectedItem().getName());
-                cbGender.setValue(tableCustomer.getSelectionModel().getSelectedItem().getGender());
-                datePicker.setValue(tableCustomer.getSelectionModel().getSelectedItem().getBirthday());
-                tfAddress.setText(tableCustomer.getSelectionModel().getSelectedItem().getAddress());
-                tfPhone.setText(tableCustomer.getSelectionModel().getSelectedItem().getPhone());
+                tfName.setText(tableCategory.getSelectionModel().getSelectedItem().getName());
+                tfDecrible.setText(tableCategory.getSelectionModel().getSelectedItem().getDescribe());
+                tfId.setText(String.valueOf(tableCategory.getSelectionModel().getSelectedItem().getId()));
             });
             return r;
         });
@@ -207,22 +189,19 @@ public class ManageCustomerController implements Initializable {
     }
 
     private boolean checkEmpty() {
-        if (!tfFullName.getText().isEmpty() & !tfAddress.getText().isEmpty() &
-                !cbGender.getValue().isEmpty() & datePicker.getValue() != null
-        & !tfPhone.getText().isEmpty()){
+        if (!tfName.getText().isEmpty() & !tfId.getText().isEmpty() & !tfDecrible.getText().isEmpty()){
             return true;
         }
         return false;
     }
 
-    private void loadListCustomer() throws SQLException, ParseException {
-        colName.setCellValueFactory(new PropertyValueFactory<Customer,String>("name"));
-        colGender.setCellValueFactory(new PropertyValueFactory<Customer,String>("gender"));
-        colAddress.setCellValueFactory(new PropertyValueFactory<Customer,String>("address"));
-        colDateofBirth.setCellValueFactory(new PropertyValueFactory<Customer,Date>("birthday"));
-        colPhone.setCellValueFactory(new PropertyValueFactory<Customer,String>("phone"));
-        CustomerService customerService = new CustomerService();
-        tableCustomer.setItems(FXCollections.observableList(customerService.getCustomers()));
+    private void loadListCate() throws SQLException, ParseException {
+        colName.setCellValueFactory(new PropertyValueFactory<Category,String>("name"));
+        colDes.setCellValueFactory(new PropertyValueFactory<Category,String>("describe"));
+        colId.setCellValueFactory(new PropertyValueFactory<Category,Integer>("id"));
+        CategoryService categoryService = new CategoryService();
+        tableCategory.setItems(FXCollections.observableList(categoryService.getCates("")));
 
     }
+
 }

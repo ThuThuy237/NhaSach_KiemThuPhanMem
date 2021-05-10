@@ -3,7 +3,6 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -14,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="601.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mynhasach.nhasach.ManageAccount">
+<AnchorPane prefHeight="502.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mynhasach.nhasach.ManageCategoryController">
    <children>
       <VBox layoutX="216.0" prefHeight="118.0" prefWidth="175.0">
          <children>
@@ -29,31 +28,25 @@
          <children>
             <HBox prefHeight="38.0" prefWidth="278.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="90.0" text="Fullname" />
-                  <TextField styleClass="field" stylesheets="@style.css" />
+                  <Label prefHeight="26.0" prefWidth="90.0" text="id" />
+                  <TextField fx:id="tfId" disable="true" styleClass="field" stylesheets="@style.css" />
                </children>
             </HBox>
             <HBox prefHeight="45.0" prefWidth="278.0">
                <children>
-                  <Label prefHeight="27.0" prefWidth="90.0" text="Username" />
-                  <TextField styleClass="field" stylesheets="@style.css" />
+                  <Label prefHeight="27.0" prefWidth="90.0" text="Name" />
+                  <TextField fx:id="tfName" styleClass="field" stylesheets="@style.css" />
                </children>
             </HBox>
             <HBox prefHeight="38.0" prefWidth="278.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="90.0" text="Password" />
-                  <TextField styleClass="field" stylesheets="@style.css" />
-               </children>
-            </HBox>
-            <HBox prefHeight="38.0" prefWidth="278.0">
-               <children>
-                  <Label prefHeight="27.0" prefWidth="90.0" text="Email" />
-                  <TextField styleClass="field" stylesheets="@style.css" />
+                  <Label prefHeight="26.0" prefWidth="90.0" text="Decrible" />
+                  <TextField fx:id="tfDecrible" styleClass="field" stylesheets="@style.css" />
                </children>
             </HBox>
             <HBox prefHeight="34.0" prefWidth="278.0">
                <children>
-                  <Button mnemonicParsing="false" stylesheets="@style.css" text="Add">
+                  <Button fx:id="add" mnemonicParsing="false" stylesheets="@style.css" text="Add">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonBlue" />
@@ -62,7 +55,7 @@
                         <Insets right="50.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" stylesheets="@style.css" text="Update">
+                  <Button fx:id="update" mnemonicParsing="false" stylesheets="@style.css" text="Update">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonBlue" />
@@ -71,33 +64,27 @@
                         <Insets right="50.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" stylesheets="@style.css" text="Delete">
+                  <Button fx:id="delete" mnemonicParsing="false" stylesheets="@style.css" text="Delete">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonBlue" />
                      </styleClass>
                   </Button>
                </children>
-            </HBox>
-            <HBox prefHeight="29.0" prefWidth="278.0">
-               <children>
-                  <ComboBox prefWidth="150.0" promptText="Office" style="-fx-background-color: #FFFFFF; -fx-border-color: #99CCCC;">
-                     <HBox.margin>
-                        <Insets left="70.0" />
-                     </HBox.margin></ComboBox>
-               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="3.0" layoutY="362.0" prefHeight="226.0" prefWidth="606.0">
+      <VBox layoutX="-7.0" layoutY="346.0" prefHeight="207.0" prefWidth="606.0">
          <children>
-            <TableView prefHeight="223.0" prefWidth="606.0" style="-fx-border-color: #99CCCC;" styleClass="center">
-              <columns>
-                <TableColumn prefWidth="164.80001544952393" text="Name" />
-                <TableColumn prefWidth="120.00001525878906" text="Pass" />
-                  <TableColumn prefWidth="170.4000244140625" text="Email" />
-                  <TableColumn prefWidth="151.99993896484375" text="Office" />
-              </columns>
+            <TableView fx:id="tableCategory" prefHeight="207.0" prefWidth="594.0" style="-fx-border-color: #99CCCC;" styleClass="center">
+               <columns>
+                  <TableColumn fx:id="colId" prefWidth="107.2000093460083" text="id" />
+                  <TableColumn fx:id="colName" prefWidth="179.19996643066406" text="Name" />
+                  <TableColumn fx:id="colDes" prefWidth="315.99993896484375" text="Decription" />
+               </columns>
             </TableView>
          </children>
       </VBox>
