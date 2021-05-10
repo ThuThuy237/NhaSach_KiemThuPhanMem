@@ -10,6 +10,20 @@ package com.mynhasach.pojo;
  * @author thuy
  */
 public class Category {
+    public Category(String name, String describe) {
+        this.name = name;
+        this.describe = describe;
+    }
+
+    public Category() {
+    }
+
+    public Category(int id, String name, String describe) {
+        this.id = id;
+        this.name = name;
+        this.describe = describe;
+    }
+
     @Override
     public String toString() {
         return name;
@@ -18,7 +32,6 @@ public class Category {
     private int id;
     private String name;
     private String describe;
-
 
     /**
      * @return the id

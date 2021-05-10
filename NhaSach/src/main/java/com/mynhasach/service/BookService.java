@@ -82,7 +82,7 @@ public class BookService {
      * @param book
      * @throws SQLException
      */
-    public void addBook(Book book) throws SQLException {
+    public Boolean addBook(Book book) throws SQLException {
         Connection conn = jdbcUtils.getConn();
         PreparedStatement preS;
         preS = conn.prepareStatement("INSERT INTO books (name, author, inventory, import_price, price, image, cat_id)" +
@@ -95,9 +95,7 @@ public class BookService {
         preS.setString(6,book.getImage());
         preS.setInt(7,book.getCategoryId());
 
-//        if (preS.executeUpdate()>0)
-//            System.out.println("Thêm dữ liệu thành công!!!");
-        preS.close();
+        return preS.executeUpdate()>0;
 
     }
     public boolean deleteBook(int id) throws SQLException {

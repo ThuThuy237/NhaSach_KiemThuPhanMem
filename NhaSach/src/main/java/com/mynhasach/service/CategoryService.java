@@ -1,5 +1,6 @@
 package com.mynhasach.service;
 
+import com.mynhasach.pojo.Buy;
 import com.mynhasach.pojo.Category;
 
 import java.sql.*;
@@ -28,6 +29,22 @@ public class CategoryService {
             c.setDescribe(rs.getString("describe"));
 
             categories.add(c);
+        }
+        return categories;
+    }
+    public Category getCateById(int id) throws SQLException {
+
+        String sql = "SELECT * FROM nhasach.categories  WHERE (`id` = ?);;";
+        PreparedStatement stm = this.conn.prepareStatement(sql);
+        stm.setInt(1,id);
+        ResultSet rs = stm.executeQuery();
+        Category categories = new Category();
+        while (rs.next()){
+            Category c = new Category();
+            c.setId(rs.getInt("id"));
+            c.setName(rs.getString("name"));
+            c.setDescribe(rs.getString("describe"));
+
         }
         return categories;
     }
