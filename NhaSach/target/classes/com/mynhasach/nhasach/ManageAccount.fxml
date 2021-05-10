@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="555.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mynhasach.nhasach.ManageAccount">
+<AnchorPane prefHeight="601.0" prefWidth="613.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mynhasach.nhasach.ManageAccount">
    <children>
       <VBox layoutX="216.0" prefHeight="118.0" prefWidth="175.0">
          <children>
@@ -89,9 +89,9 @@
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="-7.0" layoutY="346.0" prefHeight="207.0" prefWidth="606.0">
+      <VBox layoutX="3.0" layoutY="362.0" prefHeight="226.0" prefWidth="606.0">
          <children>
-            <TableView prefHeight="207.0" prefWidth="594.0" style="-fx-border-color: #99CCCC;" styleClass="center">
+            <TableView prefHeight="223.0" prefWidth="606.0" style="-fx-border-color: #99CCCC;" styleClass="center">
               <columns>
                 <TableColumn prefWidth="164.80001544952393" text="Name" />
                 <TableColumn prefWidth="120.00001525878906" text="Pass" />

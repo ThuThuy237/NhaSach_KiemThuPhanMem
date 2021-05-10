@@ -21,7 +21,7 @@ public class LoginService {
 
     private Connection conn;
 
-    public LoginService() throws SQLException {
+    public LoginService(Connection conn) throws SQLException {
         this.conn = jdbcUtils.getConn();
     }
     /**
