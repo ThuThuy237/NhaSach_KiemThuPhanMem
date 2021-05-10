@@ -38,7 +38,7 @@
                         <Image url="@images/logo.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="543.0" text="BuyBook">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="79.0" prefWidth="543.0" text="ImportBook">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>

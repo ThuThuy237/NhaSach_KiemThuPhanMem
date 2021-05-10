@@ -3,8 +3,23 @@ package com.mynhasach.pojo;
 import java.math.BigDecimal;
 
 public class OrderDetail {
-    public OrderDetail( int bookId, int quantity, BigDecimal price) {
+    public OrderDetail(int id, int bookId, int orderId, int quantity, BigDecimal price) {
+        this.id = id;
         this.bookId = bookId;
+        this.orderId = orderId;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public OrderDetail(int bookId, int quantity, BigDecimal price) {
+        this.bookId = bookId;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
+    public OrderDetail(int bookId, int orderId, int quantity, BigDecimal price) {
+        this.bookId = bookId;
+        this.orderId = orderId;
         this.quantity = quantity;
         this.price = price;
     }

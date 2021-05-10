@@ -44,7 +44,7 @@ public class RegisterController {
             login.setEmail(email.getText());
 
             try {
-                LoginService loginService = new LoginService(conn);
+                LoginService loginService = new LoginService();
                 if (loginService.addLogin(login)){
                     util.showAlert(Alert.AlertType.INFORMATION, window,"Register","Successful", 2900);
                     this.switchToLogin();
@@ -89,7 +89,7 @@ public class RegisterController {
 
     public Boolean checkName(String name){
         try {
-            LoginService loginService = new LoginService(conn);
+            LoginService loginService = new LoginService();
             if (loginService.findUsername(name)){
                 this.err.setText("This username is already taken !!!");
                 return false;

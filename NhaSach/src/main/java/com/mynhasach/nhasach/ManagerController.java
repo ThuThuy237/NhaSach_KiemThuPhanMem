@@ -74,21 +74,20 @@ public class ManagerController implements Initializable {
                 ex.printStackTrace();
             }
         });
+
+        btnLogOut.setOnMouseClicked(e->{
+            logout();
+        });
     }
 
     public void logout(){
-        btnLogOut.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                try {
-                    App.setIsAuthenticate(false);
-                    App.setUser(new Login());
-                    App.setRoot("login");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        try {
+            App.setIsAuthenticate(false);
+            App.setUser(new Login());
+            App.setRoot("login");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void LoadPane(String fxml) throws IOException {

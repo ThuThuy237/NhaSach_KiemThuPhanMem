@@ -52,8 +52,8 @@
              <TableView fx:id="tableSell" prefHeight="194.0" prefWidth="630.0" style="-fx-border-color: #99CCCC;" styleClass="center" tableMenuButtonVisible="true">
                  <columns>
                      <TableColumn fx:id="nameOfBookSell" prefWidth="212.00000315904617" text="Book Id" />
-                     <TableColumn fx:id="numOfBookSell" prefWidth="131.2000274658203" text="quantity" />
-                     <TableColumn fx:id="totalPrice" minWidth="0.0" prefWidth="293.5999450683594" text="Total " />
+                     <TableColumn fx:id="numOfBookSell" prefWidth="80.00001525878906" text="quantity" />
+                     <TableColumn fx:id="totalPrice" minWidth="0.0" prefWidth="296.0" text="Total " />
                  </columns>
                <VBox.margin>
                   <Insets left="5.0" right="5.0" />
@@ -133,9 +133,9 @@
       </Button>
       <VBox layoutX="398.0" layoutY="118.0" prefHeight="218.0" prefWidth="213.0">
          <children>
-             <TableView fx:id="tableBook" prefHeight="218.0" prefWidth="187.0" style="-fx-border-color: #99CCCC;">
+             <TableView fx:id="tableBook" prefHeight="218.0" prefWidth="202.0" style="-fx-border-color: #99CCCC;">
                  <columns>
-                     <TableColumn fx:id="nameColumn" prefWidth="190.40001220703124" text="Book name" />
+                     <TableColumn fx:id="nameColumn" prefWidth="185.60003662109375" text="Book name" />
                  </columns>
                <VBox.margin>
                   <Insets right="20.0" />
