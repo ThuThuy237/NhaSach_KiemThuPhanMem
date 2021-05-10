@@ -1,6 +1,8 @@
 package com.mynhasach.service;
 
 import com.mynhasach.pojo.Buy;
+import com.mynhasach.pojo.Order;
+
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +42,7 @@ public class BuyService {
         while(rs.next()){
             Buy b = new Buy();
             b.setId(rs.getInt("id"));
-            b.setDate(new SimpleDateFormat("dd/MM/yyyy").parse(rs.getString("date")));
+            b.setDate(LocalDateTime.parse(rs.getString("date")));
             b.setTotal(BigDecimal.valueOf(rs.getInt("total")));
             b.setEmpId(rs.getInt("emp_id"));
             b.setSupId(rs.getInt("supplier_id"));
@@ -50,13 +54,26 @@ public class BuyService {
     public boolean addBuy(Buy buy) throws SQLException {
             String sql = "INSERT INTO `nhasach`.`buy` (`date`, `total`, `emp_id`, `supplier_id`) VALUES (?, ?, ?, ?);";
             PreparedStatement stm = this.conn.prepareStatement(sql);
-            stm.setDate(1, (java.sql.Date) buy.getDate());
+            stm.setString(1, buy.getDate().toString());
             stm.setBigDecimal(2,buy.getTotal());
             stm.setInt(3,buy.getEmpId());
             stm.setInt(4,buy.getSupId());
 
 
             return stm.executeUpdate()>0;
+
+    }
+    public int getLastId() throws SQLException{
+        String sql = "SELECT (nhasach.buy.id) FROM nhasach.buy;";
+
+        PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
+
+        ResultSet rs = preparedStatement.executeQuery();
+        Buy o = new Buy();
+        while(rs.next()){
+            o.setId(rs.getInt("id"));
+        }
+        return o.getId();
 
     }
 
@@ -73,7 +90,7 @@ public class BuyService {
             String sql = "UPDATE `nhasach`.`buy` SET `date` = ?, `total` = ?, `emp_id` = ?, `supplier_id` = ?  WHERE (`id` = ?);";
             PreparedStatement preparedStatement = this.conn.prepareStatement(sql);
             preparedStatement.setInt(5, buy.getId());
-            preparedStatement.setDate(1, (Date) buy.getDate());
+            preparedStatement.setString(1, buy.getDate().toString());
             preparedStatement.setBigDecimal(2, buy.getTotal());
             preparedStatement.setInt(3, buy.getEmpId());
             preparedStatement.setInt(4, buy.getSupId());

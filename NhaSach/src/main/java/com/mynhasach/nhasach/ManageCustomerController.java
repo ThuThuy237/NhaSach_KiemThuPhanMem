@@ -106,6 +106,104 @@ public class ManageCustomerController implements Initializable {
                 }
             }
         });
+        delete.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                if(tableCustomer.getSelectionModel().isEmpty()){
+                    try {
+                        new Util().showAlert(Alert.AlertType.ERROR, window,"Error","Select the customer you want to delete", 0);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    try {
+                        CustomerService customerService = new CustomerService();
+                        if(customerService.deleteCustomer(tableCustomer.getSelectionModel().getSelectedItem().getId()) ){
+                            try {
+                                new Util().showAlert(Alert.AlertType.INFORMATION, window,"Notion","Delete success!", 0);
+                                loadListCustomer();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }else{
+                            try {
+                                new Util().showAlert(Alert.AlertType.INFORMATION, window,"Notion","Fail !!!", 0);
+                                loadListCustomer();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        });
+
+        update.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                if(tableCustomer.getSelectionModel().isEmpty()){
+                    try {
+                        new Util().showAlert(Alert.AlertType.ERROR, window,"Error","Select the customer you want to update", 0);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+
+                    if(checkEmpty()){
+
+                        try {
+                            customer = new Customer(tableCustomer.getSelectionModel().getSelectedItem().getId()
+                                    ,tfFullName.getText(),cbGender.getValue(), datePicker.getValue(),
+                                    tfAddress.getText(), tfPhone.getText());
+                            CustomerService customerService = new CustomerService();
+                            if (customerService.updateCustomer(customer)){
+                                try {
+                                    new Util().showAlert(Alert.AlertType.INFORMATION, window,"notifications","Update Customer success!!!", 1000);
+                                    loadListCustomer();
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }else {
+                                try {
+                                    new Util().showAlert(Alert.AlertType.INFORMATION, window,"notifications","update fail!!!", 1000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            loadListCustomer();
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }else {
+                        try {
+                            new Util().showAlert(Alert.AlertType.INFORMATION, window,"add book to receipt","Please complete information!", 2000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }
+            }
+        });
+        this.tableCustomer.setRowFactory(obj -> {
+            TableRow r = new TableRow();
+            r.setOnMouseClicked(e -> {
+                tfFullName.setText(tableCustomer.getSelectionModel().getSelectedItem().getName());
+                cbGender.setValue(tableCustomer.getSelectionModel().getSelectedItem().getGender());
+                datePicker.setValue(tableCustomer.getSelectionModel().getSelectedItem().getBirthday());
+                tfAddress.setText(tableCustomer.getSelectionModel().getSelectedItem().getAddress());
+                tfPhone.setText(tableCustomer.getSelectionModel().getSelectedItem().getPhone());
+            });
+            return r;
+        });
+
     }
 
     private boolean checkEmpty() {

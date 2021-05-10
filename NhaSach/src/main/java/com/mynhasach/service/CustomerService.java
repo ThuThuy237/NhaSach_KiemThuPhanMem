@@ -58,8 +58,8 @@ public class CustomerService {
             stm.setString(1,custom.getName());
             stm.setString(2,custom.getGender());
             stm.setString(3,custom.getAddress());
-            stm.setString(4,custom.getPhone());
-            stm.setString(2, custom.getBirthday().toString());
+            stm.setString(5,custom.getPhone());
+            stm.setString(4, custom.getBirthday().toString());
 
 
             return stm.executeUpdate()>0;

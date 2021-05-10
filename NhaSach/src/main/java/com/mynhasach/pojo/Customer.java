@@ -8,6 +8,17 @@ public class Customer {
     private String name;
     private String gender;
     private LocalDate birthday;
+    private String address;
+    private String phone;
+
+    public Customer(int id, String name, String gender, LocalDate birthday, String address, String phone) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.birthday = birthday;
+        this.address = address;
+        this.phone = phone;
+    }
 
     public Customer(String name, String gender, LocalDate birthday, String address, String phone) {
         this.name = name;
@@ -20,8 +31,7 @@ public class Customer {
     public Customer() {
     }
 
-    private String address;
-    private String phone;
+
 
     @Override
     public String toString() {
