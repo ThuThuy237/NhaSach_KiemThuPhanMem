@@ -1,9 +1,7 @@
 package com.mynhasach.nhasach;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,7 +11,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
 import javafx.stage.Window;
 
 public class RegisterController {
@@ -47,7 +44,7 @@ public class RegisterController {
             login.setEmail(email.getText());
 
             try {
-                LoginService loginService = new LoginService();
+                LoginService loginService = new LoginService(conn);
                 if (loginService.addLogin(login)){
                     util.showAlert(Alert.AlertType.INFORMATION, window,"Register","Successful", 2900);
                     this.switchToLogin();
@@ -92,7 +89,7 @@ public class RegisterController {
 
     public Boolean checkName(String name){
         try {
-            LoginService loginService = new LoginService();
+            LoginService loginService = new LoginService(conn);
             if (loginService.findUsername(name)){
                 this.err.setText("This username is already taken !!!");
                 return false;

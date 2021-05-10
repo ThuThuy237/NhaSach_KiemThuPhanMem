@@ -1,6 +1,7 @@
 package com.mynhasach.nhasach;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import com.mynhasach.service.LoginService;
@@ -50,7 +51,8 @@ public class LoginController {
             Util ut = new Util();
             userPass = ut.md5(userPass);
 
-            LoginService loginsv = new LoginService();
+            Connection conn = null;
+            LoginService loginsv = new LoginService(conn);
             String password = loginsv.getPasswordByUsername(username);
 
             if (userPass.equals(password)){
