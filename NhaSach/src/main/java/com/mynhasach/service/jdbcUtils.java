@@ -29,6 +29,6 @@ public class jdbcUtils {
      */
     public static Connection getConn() throws SQLException, SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost/nhasach",
-                "root", "12345");
+                "root", "0917803105");
     }
 }

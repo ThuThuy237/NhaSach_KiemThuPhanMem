@@ -82,11 +82,11 @@ public class CategoryTester {
 //        CategoryService cs = new CategoryService();
 //        Assertions.assertTrue(cs.deleteCate(6));
 //    }
-
+//
 //    @Test
 //    public void testUpdateCate() throws SQLException {
 //        CategoryService cs = new CategoryService();
-//        Assertions.assertTrue(cs.updateCate(2, "comic",null));
+//        Assertions.assertTrue(cs.updateCate(new Category("haha","hhaha")));
 //    }
 
 }

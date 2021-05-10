@@ -7,6 +7,24 @@ public class Login {
     private String email;
     private String avatar;
 
+    public Login() {
+    }
+
+    public Login(int id, String username, String password, String email, String avatar) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.avatar = avatar;
+    }
+
+    public Login(String username, String password, String email, String avatar) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.avatar = avatar;
+    }
+
     /**
      * @return the id
      */
