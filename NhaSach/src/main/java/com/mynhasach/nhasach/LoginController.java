@@ -52,7 +52,7 @@ public class LoginController {
             userPass = ut.md5(userPass);
 
             Connection conn = null;
-            LoginService loginsv = new LoginService(conn);
+            LoginService loginsv = new LoginService();
             String password = loginsv.getPasswordByUsername(username);
 
             if (userPass.equals(password)){

@@ -39,13 +39,13 @@
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonYellow" />
                      </styleClass></Button>
-                        <Button fx:id="btnBanSach" layoutX="28.0" layoutY="266.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #F9E54E;" text="BuyBook">
+                        <Button fx:id="btnBanSach" layoutX="28.0" layoutY="266.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #F9E54E;" text="SellBook">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonYellow" />
                      </styleClass></Button>
                         <Line disable="true" endX="202.39999389648438" endY="165.60003662109375" layoutX="-1.0" layoutY="348.0" opacity="0.1" startX="-0.800000011920929" startY="165.60000610351562" />
-                        <Button fx:id="btnLogOut" layoutX="28.0" layoutY="526.0" mnemonicParsing="false" onAction="#logout" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #F9E54E;" stylesheets="@style.css" text="Log out">
+                        <Button fx:id="btnLogOut" layoutX="28.0" layoutY="526.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #F9E54E;" stylesheets="@style.css" text="Log out">
                      <styleClass>
                         <String fx:value="btn-form" />
                         <String fx:value="myButtonYellow" />

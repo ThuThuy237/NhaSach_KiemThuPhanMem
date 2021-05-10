@@ -15,11 +15,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 
 /**
@@ -50,43 +48,40 @@ public class CategoryTester {
     }
 
     @Test
+    @DisplayName("Lấy về các loại danh mục sách")
     public void testQuantity() throws SQLException {
         List<Category> cates = new CategoryService().getCates("");
         Assertions.assertTrue(cates.size() >= 1);
     }
 
-    @Test
-    public void testAddCate() throws SQLException {
-        Category category = new Category();
-        category.setName("Autobiography");
-        category.setDescribe("is a self-written account of one's life");
-        CategoryService cs = new CategoryService();
-
-        Assertions.assertTrue(cs.addCate(category));
-
-    }
-
-    @Test
-    public void testAddCateWithoutName() throws SQLException {
-        Category category = new Category();
-        category.setName("Autobiography");
-//        category.setDescribe("is a self-written account of one's life");
-        CategoryService cs = new CategoryService();
-
-        Assertions.assertTrue(cs.addCate(category));
-
-    }
-
-//    @Test
-//    public void testDeleteCate() throws SQLException {
+//    @ParameterizedTest
+//    @CsvSource({"Autobiography,is a self-written account of one's life"})
+//    @DisplayName("Thêm danh muc mới vào database")
+//    public void testAddCate( String name, String description) throws SQLException {
+//        Category category = new Category(name,description);
 //        CategoryService cs = new CategoryService();
-//        Assertions.assertTrue(cs.deleteCate(6));
-//    }
 //
-//    @Test
-//    public void testUpdateCate() throws SQLException {
+//        Assertions.assertTrue(cs.addCate(category));
+//
+//    }
+
+//
+//    @ParameterizedTest
+//    @CsvSource({"6"})
+//    @DisplayName("Xóa danh mục từ database ")
+//    public void testDeleteCate(int Id) throws SQLException {
 //        CategoryService cs = new CategoryService();
-//        Assertions.assertTrue(cs.updateCate(new Category("haha","hhaha")));
+//        Assertions.assertTrue(cs.deleteCate(Id));
+//    }
+
+//    @Test
+//    @ParameterizedTest
+//    @CsvSource({"5, test, test"})
+//    @DisplayName("sửa danh mục ")
+//    @Tag("critical")
+//    public void testUpdateCate(int Id, String name, String des) throws SQLException {
+//        CategoryService cs = new CategoryService();
+//        Assertions.assertTrue(cs.updateCate(new Category(Id, name, des)));
 //    }
 
 }

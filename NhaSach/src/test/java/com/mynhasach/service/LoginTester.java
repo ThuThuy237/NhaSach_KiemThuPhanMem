@@ -1,5 +1,6 @@
 package com.mynhasach.service;
 
+import com.mynhasach.nhasach.Util;
 import com.mynhasach.pojo.Login;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -33,58 +34,70 @@ public class LoginTester {
     }
 
     @Test
-    @DisplayName("Đăng Nhập Với Username empty")
+    @DisplayName("Đăng Nhập Với Username và Password rỗng")
     @Tag("critical")
     public void testLoginUsernamePasswordEmpty() {
         try {
-            LoginService s = new LoginService(conn);
+            LoginService s = new LoginService();
             String username = "";
             String password = "";
-            System.out.println(username + password);
-            boolean isHaveLogin = false;
-//            if (s.Login(username, password) != null) {
-//                isHaveLogin = true;
-//            }
-            Assertions.assertFalse(isHaveLogin);
+            boolean isLogin = false;
+            Util ut = new Util();
+            if (s.getPasswordByUsername(username).equals(ut.md5(password))) {
+                isLogin = true;
+            }
+            Assertions.assertFalse(isLogin);
         } catch (SQLException ex) {
             Logger.getLogger(LoginTester.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @ParameterizedTest
-    @CsvSource({"tuan123,''", "'',123"})
-    @DisplayName("Đăng Nhập Với Username Hoặc password empty")
+    @CsvSource({"thuy,''", "'',thuy"})
+    @DisplayName("Đăng Nhập Với Username Hoặc password rỗng")
     @Tag("critical")
-    public void  testLoginUsernamePasswordEmpty(String username, String password) throws SQLException {
-        LoginService s = new LoginService(conn);
-        boolean isHaveLogin = false;
-//        if (s.Login(username, password) != null) {
-//            isHaveLogin = true;
-//        }
-        Assertions.assertFalse(isHaveLogin);
+    public void testLoginUsernamePasswordEmpty(String username, String password) throws SQLException {
+        LoginService s = new LoginService();
+        boolean isLogin = false;
+        Util ut = new Util();
+        try{
+            if (s.getPasswordByUsername(username).equals(ut.md5(password)) ) {
+                isLogin = true;
+            }
+        }catch (Exception ex){
+            isLogin = false;
+        }
+        Assertions.assertFalse(isLogin);
     }
 
     @ParameterizedTest
-    @CsvSource({"tuan123,'123'"})
+    @CsvSource({"thuy,'thu'", "thuuthuy,thuy"})
     @DisplayName("Đăng Nhập sai username password")
     public void  testLoginFailed(String username, String password) throws SQLException {
-        LoginService s = new LoginService(conn);
-        boolean isHaveLogin = false;
-        if (s.getPasswordByUsername(username) != null) {
-            isHaveLogin = true;
+        LoginService s = new LoginService();
+        boolean isLogin = false;
+        Util ut = new Util();
+        try{
+            if (s.getPasswordByUsername(username).equals(ut.md5(password)) ) {
+                isLogin = true;
+            }
+        }catch (Exception ex){
+            isLogin = false;
         }
-        Assertions.assertFalse(isHaveLogin);
+        Assertions.assertFalse(isLogin);
     }
+
     @ParameterizedTest
-    @CsvSource({"tuan123,'1'"})
+    @CsvSource({"thuy,'thuy'"})
     @DisplayName("Đăng Nhập thành công username password")
-    public void  testLoginSuccess(String username, String password) throws SQLException {
-        LoginService s = new LoginService(conn);
-        boolean isHaveLogin = false;
-//        if (s.addLogin(new Login(username, password,"","","","USER")) ) {
-//            isHaveLogin = true;
-//        }
-        Assertions.assertTrue(isHaveLogin);
+    public void testLoginSuccess(String username, String password) throws SQLException {
+        LoginService s = new LoginService();
+        boolean isLogin = false;
+        Util ut = new Util();
+        if (s.getPasswordByUsername(username).equals(ut.md5(password))) {
+            isLogin = true;
+        }
+        Assertions.assertTrue(isLogin);
     }
 
 }
